@@ -1,0 +1,8 @@
+.idea
+composer.lock
+vendor
+coverage
+.phpunit.result.cache
+build
+.fleet
+.DS_Store
