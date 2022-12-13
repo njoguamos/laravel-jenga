@@ -3,8 +3,8 @@
 namespace NjoguAmos\JengaAPI\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Orchestra\Testbench\TestCase as Orchestra;
 use NjoguAmos\JengaAPI\JengaAPIServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
 {

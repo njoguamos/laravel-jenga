@@ -2,9 +2,9 @@
 
 namespace NjoguAmos\JengaAPI;
 
+use NjoguAmos\JengaAPI\Commands\JengaAPICommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
-use NjoguAmos\JengaAPI\Commands\JengaAPICommand;
 
 class JengaAPIServiceProvider extends PackageServiceProvider
 {
