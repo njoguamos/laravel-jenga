@@ -12,8 +12,8 @@ class JengaAPIFactory extends Factory
     {
         return [
             'refresh_token' => Str::random(1000),
-            'access_token' => Str::random(40),
-            'expires_in' => now()->addMinutes(50),
+            'access_token'  => Str::random(40),
+            'expires_in'    => now()->addMinutes(50),
         ];
     }
 }
