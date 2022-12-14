@@ -35,13 +35,13 @@
     },
     "autoload": {
         "psr-4": {
-            "NjoguAmos\\JengaAPI\\": "src",
-            "NjoguAmos\\JengaAPI\\Database\\Factories\\": "database/factories"
+            "NjoguAmos\\Jenga\\": "src",
+            "NjoguAmos\\Jenga\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NjoguAmos\\JengaAPI\\Tests\\": "tests"
+            "NjoguAmos\\Jenga\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -61,10 +61,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "NjoguAmos\\JengaAPI\\JengaAPIServiceProvider"
+                "NjoguAmos\\Jenga\\JengaServiceProvider"
             ],
             "aliases": {
-                "JengaAPI": "NjoguAmos\\JengaAPI\\Facades\\JengaAPI"
+                "Jenga": "NjoguAmos\\Jenga\\Facades\\Jenga"
             }
         }
     },

@@ -1,15 +1,15 @@
 <?php
 
-namespace NjoguAmos\JengaAPI\Models;
+namespace NjoguAmos\Jenga\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class JengaAPI extends Model
+class Jenga extends Model
 {
     use HasFactory;
 
-    protected $table = 'jenga_api';
+    protected $table = 'jenga';
 
     /** @var array<string,string> */
     public $casts = [

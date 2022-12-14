@@ -2,13 +2,13 @@
 
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\DB;
-use NjoguAmos\JengaAPI\Models\JengaAPI;
+use NjoguAmos\Jenga\Models\Jenga;
 
 test('it encrypts access_token and refresh_token columns', function (string $column, string $value) {
-    $api = JengaAPI::factory()
+    $api = Jenga::factory()
         ->create([$column => $value]);
 
-    $apis = DB::table('jenga_api')->first();
+    $apis = DB::table('jenga')->first();
 
     expect($api->$column)->toBe($value);
     expect(Crypt::decryptString($apis->$column))->toBe($api->$column);

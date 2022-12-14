@@ -1,9 +1,9 @@
 <?php
 
-namespace NjoguAmos\JengaAPI\Tests;
+namespace NjoguAmos\Jenga\Tests;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use NjoguAmos\JengaAPI\JengaAPIServiceProvider;
+use NjoguAmos\Jenga\JengaServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 class TestCase extends Orchestra
@@ -13,14 +13,14 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'NjoguAmos\\JengaAPI\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'NjoguAmos\\Jenga\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 
     protected function getPackageProviders($app)
     {
         return [
-            JengaAPIServiceProvider::class,
+            JengaServiceProvider::class,
         ];
     }
 
@@ -35,7 +35,7 @@ class TestCase extends Orchestra
             'database' => ':memory:',
         ]);
 
-        $migration = include __DIR__.'/../database/migrations/create_jenga_api_table.php.stub';
+        $migration = include __DIR__.'/../database/migrations/create_jenga_table.php.stub';
         $migration->up();
     }
 }

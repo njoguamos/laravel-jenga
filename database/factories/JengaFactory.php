@@ -1,15 +1,15 @@
 <?php
 
-namespace NjoguAmos\JengaAPI\Database\Factories;
+namespace NjoguAmos\Jenga\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use NjoguAmos\JengaAPI\Models\JengaAPI;
+use NjoguAmos\Jenga\Models\Jenga;
 
-/** @extends Factory<JengaAPI> */
-class JengaAPIFactory extends Factory
+/** @extends Factory<Jenga> */
+class JengaFactory extends Factory
 {
-    protected $model = JengaAPI::class;
+    protected $model = Jenga::class;
 
     public function definition()
     {
