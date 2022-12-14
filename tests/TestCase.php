@@ -26,7 +26,12 @@ class TestCase extends Orchestra
 
     public function getEnvironmentSetUp($app)
     {
-        config()->set('database.default', 'testing');
+        config()->set('database.default', 'sqlite');
+
+        config()->set('database.connections.sqlite', [
+            'driver'   => 'sqlite',
+            'database' => ':memory:',
+        ]);
 
         $migration = include __DIR__.'/../database/migrations/create_jenga_api_table.php.stub';
         $migration->up();
