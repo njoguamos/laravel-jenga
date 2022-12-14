@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('laravel_jenga_api_table', function (Blueprint $table) {
+        Schema::create('jenga_api', function (Blueprint $table) {
             $table->id();
 
             $table->text('access_token')->index();

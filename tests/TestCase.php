@@ -28,6 +28,8 @@ class TestCase extends Orchestra
     {
         config()->set('database.default', 'sqlite');
 
+        config()->set('app.key', 'base64:lg1m/12MHBbBpiWTXjot98Q9MP/nSzPrvLEU2beD+2Y=');
+
         config()->set('database.connections.sqlite', [
             'driver'   => 'sqlite',
             'database' => ':memory:',

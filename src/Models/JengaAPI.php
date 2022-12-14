@@ -9,6 +9,8 @@ class JengaAPI extends Model
 {
     use HasFactory;
 
+    protected $table = 'jenga_api';
+
     /** @var array<string,string> */
     public $casts = [
         'access_token'  => 'encrypted',
