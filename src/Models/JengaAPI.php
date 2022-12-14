@@ -2,8 +2,8 @@
 
 namespace NjoguAmos\JengaAPI\Models;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class JengaAPI extends Model
 {
@@ -16,5 +16,4 @@ class JengaAPI extends Model
         'expires_in' => 'datetime',
         'issued_at' => 'datetime',
     ];
-
 }
