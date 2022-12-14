@@ -3,6 +3,20 @@
 return [
     /*
      |--------------------------------------------------------------------------
+     | API V3 Base Endpoint
+     |--------------------------------------------------------------------------
+     |
+     | Base url for interacting with Jenga api. To avoid accidental data loss,
+     | testing base url us set as the default endpoint.
+     |
+     | Testing:  https://uat.finserve.africa
+     | Production: https://api-finserve-prod.azure-api.net
+     |
+     */
+    'host' => env('JENGA_BASE_ENDPOINT', 'https://uat.finserve.africa'),
+
+    /*
+     |--------------------------------------------------------------------------
      | Jenga API Key
      |--------------------------------------------------------------------------
      |
@@ -13,7 +27,7 @@ return [
      |
      |
      */
-    'api-key' => env('JENGA_API_KEY'),
+    'key' => env('JENGA_API_KEY'),
 
     /*
      |--------------------------------------------------------------------------
@@ -24,7 +38,7 @@ return [
      |
      |
      */
-    'merchant-code' => env('JENGA_MERCHANT_CODE'),
+    'merchant' => env('JENGA_MERCHANT_CODE'),
 
     /*
      |--------------------------------------------------------------------------
@@ -35,19 +49,5 @@ return [
      |
      |
      */
-    'consumer_secret' => env('JENGA_CONSUMER_SECRET'),
-
-    /*
-     |--------------------------------------------------------------------------
-     | Base API V3 Endpoint
-     |--------------------------------------------------------------------------
-     |
-     | Base url for interacting with Jenga api. To avoid accidental data loss,
-     | testing base url us set as the default endpoint.
-     |
-     | Testing:  https://uat.finserve.africa
-     | Production: https://api-finserve-prod.azure-api.net
-     |
-     */
-    'base_endpoint' => env('JENGA_BASE_ENDPOINT', 'https://uat.finserve.africa'),
+    'secret' => env('JENGA_CONSUMER_SECRET'),
 ];

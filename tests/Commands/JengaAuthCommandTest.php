@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Carbon;
 
 test('it can get and save authorization tokens to database on success response', function () {
     $response = [
@@ -16,13 +18,21 @@ test('it can get and save authorization tokens to database on success response',
 
     Http::fake([$url => Http::response($response, 200)]);
 
-    $this->artisan('jenga:auth')
-        ->expectsOutput(trans('jenga::jenga.token'));
+    // Http::assertSent(function (Request $request) {
+    //     return $request->hasHeader('X-First', 'foo') &&
+    //     $request->url() == 'http://example.com/users' &&
+    //     $request['name'] == 'Taylor' &&
+    //     $request['role'] == 'Developer';
+    // });
 
-    // $this->assertDatabaseHas('zoho_oauth', [
-    //     'access_token'  => $response['access_token'],
-    //     'refresh_token' => $response['refresh_token'],
-    //     'api_domain'    => $response['api_domain'],
-    //     'token_type'    => $response['token_type'],
+    $this->artisan('jenga:auth')
+        ->expectsOutput(trans('jenga::jenga.token.saved'));
+
+    // $this->assertDatabaseHas('jenga', [
+    //     'access_token'  => Crypt::encryptString($response['accessToken']),
+    //     'refresh_token' => Crypt::encryptString($response['refreshToken']),
+    //     'expires_in'    => Carbon::parse($response['expiresIn']),
+    //     'issuedAt'      => Carbon::parse($response['issuedAt']),
+    //     'token_type'    => $response['tokenType'],
     // ]);
 });
