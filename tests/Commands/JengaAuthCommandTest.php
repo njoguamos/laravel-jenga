@@ -18,12 +18,12 @@ test('it can get and save authorization tokens to database on success response',
 
     Http::fake([$url => Http::response($response, 200)]);
 
-    // Http::assertSent(function (Request $request) {
-    //     return $request->hasHeader('X-First', 'foo') &&
-    //     $request->url() == 'http://example.com/users' &&
-    //     $request['name'] == 'Taylor' &&
-    //     $request['role'] == 'Developer';
-    // });
+//     Http::assertSent(function (Request $request) {
+//         return $request->hasHeader($url, config('jenga.key')) &&
+//         $request->url() == $url &&
+//         $request['merchantCode'] == config('jenga.key') &&
+//         $request['consumerSecret'] == config('jenga.secret');
+//     });
 
     $this->artisan('jenga:auth')
         ->expectsOutput(trans('jenga::jenga.token.saved'));
