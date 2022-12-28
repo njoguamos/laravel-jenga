@@ -13,7 +13,7 @@ return [
      | Production: https://api-finserve-prod.azure-api.net
      |
      */
-    'host' => env('JENGA_BASE_ENDPOINT', 'https://uat.finserve.africa'),
+    'host'     => env('JENGA_BASE_ENDPOINT', 'https://uat.finserve.africa'),
 
     /*
      |--------------------------------------------------------------------------
@@ -27,7 +27,7 @@ return [
      |
      |
      */
-    'key' => env('JENGA_API_KEY'),
+    'key'      => env('JENGA_API_KEY'),
 
     /*
      |--------------------------------------------------------------------------
@@ -49,5 +49,5 @@ return [
      |
      |
      */
-    'secret' => env('JENGA_CONSUMER_SECRET'),
+    'secret'   => env('JENGA_CONSUMER_SECRET'),
 ];
