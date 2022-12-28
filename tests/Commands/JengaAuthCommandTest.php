@@ -14,7 +14,7 @@ test('it can get and save authorization tokens to database on success response',
         "tokenType"    => "Bearer"
     ];
 
-    $url = config('jenga.host') . "./authentication/api/v3/authenticate/merchant";
+    $url = sprintf("%s/authentication/api/v3/authenticate/merchant", config('jenga.host'));
 
     Http::preventStrayRequests();
 

@@ -1,8 +1,8 @@
 # Welcome
 
-![run-tests](https://github.com/njoguamos/laravel-jenga/workflows/run-tests/badge.svg)
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/njoguamos/laravel-jenga.svg?style=flat-square)](https://packagist.org/packages/njoguamos/laravel-jenga)
-[![Total Downloads](https://img.shields.io/packagist/dt/njoguamos/laravel-jenga.svg?style=flat-square)](https://packagist.org/packages/njoguamos/laravel-jenga)
+![run-tests](https://github.com/njoguamos/laravel-jenga-api/workflows/run-tests/badge.svg)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/njoguamos/laravel-jenga-api.svg?style=flat-square)](https://packagist.org/packages/njoguamos/laravel-jenga-api)
+[![Total Downloads](https://img.shields.io/packagist/dt/njoguamos/laravel-jenga-api.svg?style=flat-square)](https://packagist.org/packages/njoguamos/laravel-jenga-api)
 
 Welcome to Laravel Jenga API Documentation. This package is still work in progress and not all modules are complete.
 
@@ -12,7 +12,7 @@ Welcome to Laravel Jenga API Documentation. This package is still work in progre
 Use the Composer package manager to install this package into your Laravel project
 
 ```bash
-composer require njoguamos/laravel-jenga
+composer require njoguamos/laravel-jenga-api
 ```
 
 ### 1.2 Update your `.env` variables
@@ -22,7 +22,7 @@ This package assumes that you have [registered for a JengaHQ](https://v3.jengahq
 Copy the respective keys and place them in the `.env` as show in the example below.
 
 ```dotenv
-JENGA_API_KEY=i+FnsiJlFQANDLIZQiuiUxHuSAuQFB7lq/zyWr1nmrTXZzlcicyk3pz6HyqB+PGt/dB+tqPw4VTT3VUQik5+0w==
+JENGA_API_KEY="i+FnsiJlFQANDLIZQiuiUxHuSAuQFB7lq/zyWr1nmrTXZzlcicyk3pz6HyqB+PGt/dB+tqPw4VTT3VUQik5+0w=="
 JENGA_CONSUMER_SECRET=905bo1ZaUZsaX44wkR51C8Ka9qLQTx
 JENGA_MERCHANT_CODE=0123456789
 ```
@@ -30,21 +30,26 @@ JENGA_MERCHANT_CODE=0123456789
 > **Info**
 > If you don't have the credentials, follow the [developer quickstart](https://developer.jengaapi.io/docs/developer-quickstart) from Jenga API documentation.
 
-### 1.3 Initialising the Package
+> **Warning**
+> `JENGA_API_KEY` must be "surrounded by double quotes" else, it will not be parsed correctly.
 
-Before you can use the package, run the initialisation command:
+
+### 1.3 Prepare Database
+
+You need to publish the migration to create the `jenga` table. This is the table that will store `access_token` from Jenga api.
 
 ```bash
-php artisan jenga:install
+php artisan vendor:publish --provider="NjoguAmos\Jenga\JengaServiceProvider" --tag="migrations"
 ```
-
-This command will allow you to:
-- publish the `jenga.php` config file
-- publish the `create_jenga_tokens` migration
-- run migrations (optional)
 
 > **Info**
 > For security reasons, `access_token` and `refresh_token` will be encrypted using you `application key`. You can learn more about encryption from [Laravel documentation](https://laravel.com/docs/9.x/encryption)
+
+After that, you need to run migrations.
+
+```bash
+php artisan migrate
+```
 
 ### 1.4 Generating `Bearer Token`
 
@@ -54,11 +59,12 @@ Once you have valid credentials, run the following command.
 php artisan jenga:auth
 ```
 
-This command will get an `access_token` token from Jenga API and add them into a new record on `jenga` table.
+This command will get an `access_token` token from Jenga API and add them into a new record on `jenga` table. 
 
 This command may fail:
 - When you are not connected to the internet
 - When `Api Key` or `Consumer Secret` or `Merchant` is/are invalid.
+- Your API Key is not surrounded by double quotes
 
 ### 1.5 Generate `Bearer Token` Frequently
 The generated `access_token` expires after a particular period usually after `one hour`. To generate a new `access_token` automatically, schedule the `jenga:auth` command in the console kernel. The schedule time should be less than one hour.
@@ -82,7 +88,7 @@ protected function schedule(Schedule $schedule)
 You may optionally export config using the following command,
 
 ```bash
-php artisan vendor:publish --tag=jenga-config
+php artisan vendor:publish --provider="NjoguAmos\Jenga\JengaServiceProvider" --tag="config"
 ```
 
 # 2. Usage

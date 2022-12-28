@@ -27,13 +27,13 @@ class JengaServiceProvider extends PackageServiceProvider
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
                     ->startWith(function (InstallCommand $command) {
-                        $command->info('Hello, and welcome to laravel jenga setup!');
+                        $command->info('Welcome! We are going to publish migrations and config files.');
                     })
                     ->publishConfigFile()
                     ->publishMigrations()
                     ->askToStarRepoOnGitHub('njoguamos/laravel-jenga')
                     ->endWith(function (InstallCommand $command) {
-                        $command->info('Congratulation! You can run `php artisan migration`. Happy coding!');
+                        $command->info('Congratulation! You can migrate your database. Happy coding!');
                     });
             });
     }
