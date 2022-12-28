@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Facade;
  */
 class Jenga extends Facade
 {
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return \NjoguAmos\Jenga\Jenga::class;
     }
