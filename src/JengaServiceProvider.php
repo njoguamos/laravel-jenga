@@ -20,7 +20,10 @@ class JengaServiceProvider extends PackageServiceProvider
             ->name('jenga')
             ->hasConfigFile('jenga')
             ->hasMigration('create_jenga_tokens_table')
-            ->hasCommand(JengaAuthCommand::class)
+            ->hasCommands([
+                JengaAuthCommand::class
+            ])
+            ->hasTranslations()
             ->hasInstallCommand(function (InstallCommand $command) {
                 $command
                     ->startWith(function (InstallCommand $command) {
@@ -34,6 +37,5 @@ class JengaServiceProvider extends PackageServiceProvider
                         $command->info('Happy coding!');
                     });
             });
-            ;
     }
 }
