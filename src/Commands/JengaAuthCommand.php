@@ -15,13 +15,14 @@ class JengaAuthCommand extends Command
 
     public function handle(): int
     {
-        $url = config('jenga.host') . "./authentication/api/v3/authenticate/merchant";
+        $url = config('jenga.host') . "/authentication/api/v3/authenticate/merchant";
         $apiKey = config('jenga.key');
         $merchantCode = config('jenga.merchant');
         $consumerSecret = config('jenga.secret');
 
         $response = Http::acceptJson()
             ->withHeaders(['Api-Key' => $apiKey])
+            ->retry(3, 100)
             ->post($url, [
                 'merchantCode'   => $merchantCode,
                 'consumerSecret' => $consumerSecret
