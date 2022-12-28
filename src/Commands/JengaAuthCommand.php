@@ -29,7 +29,8 @@ class JengaAuthCommand extends Command
             ]);
 
         if (! $response->successful()) {
-            $this->error('There was an error getting jenga credentials.');
+            // @TODO: Refactor error
+            $this->error(trans('jenga::jenga.token.error'));
 
             return self::FAILURE;
         }

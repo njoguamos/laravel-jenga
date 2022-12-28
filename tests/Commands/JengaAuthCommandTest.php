@@ -21,6 +21,7 @@ test('it can get and save authorization tokens to database on success response',
     Http::fake([$url => Http::response($response)]);
 
     $this->artisan('jenga:auth')
+        ->assertSuccessful()
         ->expectsOutput(trans('jenga::jenga.token.saved'));
 
     Http::assertSent(function (Request $request) use ($url) {
