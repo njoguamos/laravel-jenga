@@ -1,3 +1,5 @@
+![Cover](./docs/images/cover.png)
+
 # Jenga API wrapper for Laravel
 [![run-tests](https://github.com/njoguamos/laravel-jenga-api/actions/workflows/run-test.yml/badge.svg)](https://github.com/njoguamos/laravel-jenga-api/actions/workflows/run-test.yml)
 [![License](https://img.shields.io/github/license/njoguamos/laravel-jenga-api.svg)](https://github.com/njoguamos/laravel-jenga-api)
@@ -11,6 +13,7 @@
 4. Offer a seamless gateway to interacting with Jenga API
 
 ## Documentation
+A detailed documentation can be found at [https://njoguamos.github.io/laravel-jenga-api](https://njoguamos.github.io/laravel-jenga-api)
 
 ## Testing
 
