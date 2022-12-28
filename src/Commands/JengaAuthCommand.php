@@ -22,6 +22,7 @@ class JengaAuthCommand extends Command
 
         $response = Http::acceptJson()
             ->withHeaders(['Api-Key' => $apiKey])
+            ->retry(3, 100)
             ->post($url, [
                 'merchantCode'   => $merchantCode,
                 'consumerSecret' => $consumerSecret
