@@ -1,3 +1,6 @@
+> **Warning**
+> This package is still in development and is not production ready. Use for testing and development.
+> 
 ![Cover](./docs/images/cover.png)
 
 # Jenga API wrapper for Laravel
