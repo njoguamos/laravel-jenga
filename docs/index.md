@@ -30,22 +30,21 @@ JENGA_MERCHANT_CODE=0123456789
 > **Info**
 > If you don't have the credentials, follow the [developer quickstart](https://developer.jengaapi.io/docs/developer-quickstart) from Jenga API documentation.
 
-### 1.3 Prepare Database
+### 1.3 Initialising the Package
 
-You need to publish the migration to create the `jenga` table. This is the table that will store `access_token` from Jenga api.
+Before you can use the package, run the initialisation command:
 
 ```bash
-php artisan vendor:publish --tag=jenga-migrations
+php artisan jenga:install
 ```
+
+This command will allow you to:
+- publish the `jenga.php` config file
+- publish the `create_jenga_tokens` migration
+- run migrations (optional)
 
 > **Info**
 > For security reasons, `access_token` and `refresh_token` will be encrypted using you `application key`. You can learn more about encryption from [Laravel documentation](https://laravel.com/docs/9.x/encryption)
-
-After that, you need to run migrations.
-
-```bash
-php artisan migrate
-```
 
 ### 1.4 Generating `Bearer Token`
 
