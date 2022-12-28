@@ -16,9 +16,11 @@
         }
     ],
     "require": {
-        "php": "^8.0 | ^8.1",
-        "spatie/laravel-package-tools": "^1.13.0",
-        "illuminate/support": " ^9.0"
+        "php": "^8.0 | ^8.1 | ^8.2",
+        "guzzlehttp/guzzle": "^7.5",
+        "illuminate/database": "^9.18",
+        "illuminate/support": " ^9.18",
+        "spatie/laravel-package-tools": "^1.13.0"
     },
     "require-dev": {
         "laravel/pint": "^1.0",
@@ -34,13 +36,13 @@
     },
     "autoload": {
         "psr-4": {
-            "NjoguAmos\\JengaAPI\\": "src",
-            "NjoguAmos\\JengaAPI\\Database\\Factories\\": "database/factories"
+            "NjoguAmos\\Jenga\\": "src",
+            "NjoguAmos\\Jenga\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "NjoguAmos\\JengaAPI\\Tests\\": "tests"
+            "NjoguAmos\\Jenga\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -60,10 +62,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "NjoguAmos\\JengaAPI\\JengaAPIServiceProvider"
+                "NjoguAmos\\Jenga\\JengaServiceProvider"
             ],
             "aliases": {
-                "JengaAPI": "NjoguAmos\\JengaAPI\\Facades\\JengaAPI"
+                "Jenga": "NjoguAmos\\Jenga\\Facades\\Jenga"
             }
         }
     },

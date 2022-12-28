@@ -1,12 +1,12 @@
 <?php
 
-namespace NjoguAmos\JengaAPI;
+namespace NjoguAmos\Jenga;
 
-use NjoguAmos\JengaAPI\Commands\JengaAPICommand;
+use NjoguAmos\Jenga\Commands\JengaAuthCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
-class JengaAPIServiceProvider extends PackageServiceProvider
+class JengaServiceProvider extends PackageServiceProvider
 {
     public function configurePackage(Package $package): void
     {
@@ -17,9 +17,8 @@ class JengaAPIServiceProvider extends PackageServiceProvider
          */
         $package
             ->name('laravel-jenga-api')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel-jenga-api_table')
-            ->hasCommand(JengaAPICommand::class);
+            ->hasConfigFile('jenga')
+            ->hasMigration('create_jenga_table')
+            ->hasCommand(JengaAuthCommand::class);
     }
 }

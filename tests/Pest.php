@@ -1,5 +1,5 @@
 <?php
 
-use NjoguAmos\JengaAPI\Tests\TestCase;
+use NjoguAmos\Jenga\Tests\TestCase;
 
 uses(TestCase::class)->in(__DIR__);
