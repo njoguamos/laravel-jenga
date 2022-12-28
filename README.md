@@ -1,6 +1,7 @@
 > **Warning**
 > This package is still in development and is not production ready. Use for testing and development.
->
+
+
 ![Cover](art/cover.png)
 
 # Jenga API wrapper for Laravel
@@ -10,16 +11,14 @@
 ![Issues](https://img.shields.io/github/issues/njoguamos/laravel-jenga)
 
 ## Why use this package
-1. To automate generation of jenga api `Bearer Token`
-2. To provide a way of generating jenga api `access_token` which normally expires after a particular period
-3. To provide a fluent way of generating jenga api key pair of `private key` and `public key`
+1. To provide a way of generating jenga api `access_token` after a give period e.g every 30 minutes
+2. To provide a fluent way of generating jenga api key pair of `private key` and `public key`
+3. To automate generation of jenga api `Bearer Token`
 4. Offer a seamless gateway to interacting with Jenga API
 
 ## Documentation
 
-
-### 1. Installing and Setting up the Package
-#### 1.1 Installation
+### Installation
 
 Use the Composer package manager to install this package into your Laravel project
 
@@ -27,38 +26,34 @@ Use the Composer package manager to install this package into your Laravel proje
 composer require njoguamos/laravel-jenga
 ```
 
-#### 1.2 Update your `.env` variables
+### Update your `.env` variables
 
-This package assumes that you have [registered for a JengaHQ](https://v3.jengahq.io/registration) account, and that you have `Api Key`, `Merchant Code` and `Consumer Secret` from Jenga.
+This package assumes that you have a  JengaHQ account, and that you have `Api Key`, `Merchant Code` and `Consumer Secret` (from Jenga)(https://developer.jengaapi.io/docs/developer-quickstart).
 
 Copy the respective keys and place them in the `.env` as show in the example below.
 
 ```dotenv
-JENGA_API_KEY=i+FnsiJlFQANDLIZQiuiUxHuSAuQFB7lq/zyWr1nmrTXZzlcicyk3pz6HyqB+PGt/dB+tqPw4VTT3VUQik5+0w==
-JENGA_CONSUMER_SECRET=905bo1ZaUZsaX44wkR51C8Ka9qLQTx
-JENGA_MERCHANT_CODE=0123456789
+JENGA_LIVE_MODE=false
+JENGA_API_KEY=
+JENGA_CONSUMER_SECRET=
+JENGA_MERCHANT_CODE=
 ```
 
-> **Info**
-> If you don't have the credentials, follow the [developer quickstart](https://developer.jengaapi.io/docs/developer-quickstart) from Jenga API documentation.
+> **Note**
+> For `JENGA_LIVE_MODE` use `false` when testing and `true` when running live transactions
 
-#### 1.3 Initialising the Package
+### Initialising the Package
 
-Before you can use the package, run the initialisation command:
+You must run install command that will publish the `jenga.php` config file and `create_jenga_tokens` migration
 
 ```bash
 php artisan jenga:install
 ```
 
-This command will allow you to:
-- publish the `jenga.php` config file
-- publish the `create_jenga_tokens` migration
-- run migrations (optional)
-
-> **Info**
+> **Note**
 > For security reasons, `access_token` and `refresh_token` will be encrypted using you `application key`. You can learn more about encryption from [Laravel documentation](https://laravel.com/docs/9.x/encryption)
 
-### 1.4 Generating `Bearer Token`
+### Generating `Bearer Token`
 
 Once you have valid credentials, run the following command.
 
@@ -70,24 +65,24 @@ This command will get an `access_token` token from Jenga API and add them into a
 
 This command may fail:
 - When you are not connected to the internet
-- When `Api Key` or `Consumer Secret` or `Merchant` is/are invalid.
+- When `Api Key` or `Consumer Secret` or `Merchant` is/are invalid
+- There is a problem with jenga api endpoint
 
-#### 1.5 Generate `Bearer Token` Frequently
+### Generate `Bearer Token` Frequently
 The generated `access_token` expires after a particular period usually after `one hour`. To generate a new `access_token` automatically, schedule the `jenga:auth` command in the console kernel. The schedule time should be less than one hour.
 
 ```php
 // app/Console/Kernel.php
 protected function schedule(Schedule $schedule)
 {
-    ...
+    # ...
     $schedule->command('jenga:auth')->everyThirtyMinutes();
-    ...
 }
 ```
 
-#### 1.6 Generate Signature
+### Generate Signature
 
-- [ ] TODO: document
+- [ ] TODO: Work in progress
 
 
 ## 2. Usage
