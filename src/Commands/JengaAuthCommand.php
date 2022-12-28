@@ -28,7 +28,8 @@ class JengaAuthCommand extends Command
             ]);
 
         if (! $response->successful()) {
-            $this->error('There was an error getting jenga credentials: '.$response->json()['message']);
+            $this->error('There was an error getting jenga credentials.');
+
             return self::FAILURE;
         }
 

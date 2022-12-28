@@ -1,12 +1,13 @@
 {
-    "name": "njoguamos/laravel-jenga-api",
+    "name": "njoguamos/laravel-jenga",
     "description": "A Laravel package for setting up and interacting with Jenga V3 API.",
     "keywords": [
         "NjoguAmos",
         "laravel",
-        "jenga-api"
+        "jenga-api",
+        "equity bank"
     ],
-    "homepage": "https://github.com/njoguamos/laravel-jenga-api",
+    "homepage": "https://njoguamos.github.io/laravel-jenga",
     "license": "MIT",
     "authors": [
         {

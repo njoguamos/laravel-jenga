@@ -1,8 +1,8 @@
 # Welcome
 
-![run-tests](https://github.com/njoguamos/laravel-jenga-api/workflows/run-tests/badge.svg)
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/njoguamos/laravel-jenga-api.svg?style=flat-square)](https://packagist.org/packages/njoguamos/laravel-jenga-api)
-[![Total Downloads](https://img.shields.io/packagist/dt/njoguamos/laravel-jenga-api.svg?style=flat-square)](https://packagist.org/packages/njoguamos/laravel-jenga-api)
+![run-tests](https://github.com/njoguamos/laravel-jenga/workflows/run-tests/badge.svg)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/njoguamos/laravel-jenga.svg?style=flat-square)](https://packagist.org/packages/njoguamos/laravel-jenga)
+[![Total Downloads](https://img.shields.io/packagist/dt/njoguamos/laravel-jenga.svg?style=flat-square)](https://packagist.org/packages/njoguamos/laravel-jenga)
 
 Welcome to Laravel Jenga API Documentation. This package is still work in progress and not all modules are complete.
 
@@ -12,7 +12,7 @@ Welcome to Laravel Jenga API Documentation. This package is still work in progre
 Use the Composer package manager to install this package into your Laravel project
 
 ```bash
-composer require njoguamos/laravel-jenga-api
+composer require njoguamos/laravel-jenga
 ```
 
 ### 1.2 Update your `.env` variables
@@ -35,7 +35,7 @@ JENGA_MERCHANT_CODE=0123456789
 You need to publish the migration to create the `jenga` table. This is the table that will store `access_token` from Jenga api.
 
 ```bash
-php artisan vendor:publish --tag=jeng-api-migrations
+php artisan vendor:publish --tag=jenga-migrations
 ```
 
 > **Info**
@@ -83,7 +83,7 @@ protected function schedule(Schedule $schedule)
 You may optionally export config using the following command,
 
 ```bash
-php artisan vendor:publish --provider="NjoguAmos\Jenga\JengaServiceProvider" --tag="config"
+php artisan vendor:publish --tag=jenga-config
 ```
 
 # 2. Usage
