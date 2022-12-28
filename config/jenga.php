@@ -6,14 +6,17 @@ return [
      | API V3 Base Endpoint
      |--------------------------------------------------------------------------
      |
-     | Base url for interacting with Jenga api. To avoid accidental data loss,
-     | testing base url us set as the default endpoint.
+     | Base url for interacting with Jenga api. This url predefined and is based
+     | on whether the application is in testing or live (production). To avoid
+     | accidental data loss, testing base url us set as the default endpoint.
      |
      | Testing:  https://uat.finserve.africa
      | Production: https://api-finserve-prod.azure-api.net
      |
      */
-    'host'     => env('JENGA_BASE_ENDPOINT', 'https://uat.finserve.africa'),
+    'host'     => env('JENGA_LIVE_MODE', false) === true
+        ? 'https://api-finserve-prod.azure-api.net'
+        : 'https://uat.finserve.africa',
 
     /*
      |--------------------------------------------------------------------------
@@ -22,7 +25,7 @@ return [
      |
      | By default, all requests that are sent to Jenga Payment Gateway have to be
      | authenticated using your account's API keys. This key is associated to
-     | your Jenga HQ account. When testing your application integraton, use
+     | your Jenga HQ account. When testing your application integration, use
      | the testing API key and production key when application is live.
      |
      |
