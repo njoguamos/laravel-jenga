@@ -1,6 +1,6 @@
 {
     "name": "laravel-jenga-api",
-    "workspaceFolder": "/workspaces/aravel-jenga-api",
+    "workspaceFolder": "/workspaces/laravel-jenga",
     "dockerComposeFile": [
         "docker-compose.yml"
     ],

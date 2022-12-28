@@ -3,7 +3,7 @@
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Carbon;
-use NjoguAmos\Jenga\Models\Jenga;
+use NjoguAmos\Jenga\Models\JengaToken;
 
 test('it can get and save authorization tokens to database on success response', function () {
     $response = [
@@ -30,7 +30,7 @@ test('it can get and save authorization tokens to database on success response',
             $request['consumerSecret'] == config('jenga.secret');
     });
 
-    $jenga = Jenga::query()->latest()->first();
+    $jenga = JengaToken::query()->latest()->first();
 
     expect($jenga->token_type)->toBe($response['tokenType'])
         ->and($jenga->access_token)->toBe($response['accessToken'])

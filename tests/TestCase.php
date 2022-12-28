@@ -39,7 +39,7 @@ class TestCase extends Orchestra
         config()->set('jenga.merchant', 1234567);
         config()->set('jenga.secret', '9aU1Z4wRKa9qoLQTwsaX405kRb51C8');
 
-        $migration = include __DIR__.'/../database/migrations/create_jenga_table.php.stub';
+        $migration = include __DIR__.'/../database/migrations/create_jenga_tokens_table.php.stub';
         $migration->up();
     }
 }

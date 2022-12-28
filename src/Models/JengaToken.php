@@ -21,11 +21,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|Jenga newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Jenga query()
  */
-class Jenga extends Model
+class JengaToken extends Model
 {
     use HasFactory;
-
-    protected $table = 'jenga';
 
     /** @var array<string,string> */
     public $casts = [

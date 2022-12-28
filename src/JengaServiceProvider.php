@@ -5,6 +5,7 @@ namespace NjoguAmos\Jenga;
 use NjoguAmos\Jenga\Commands\JengaAuthCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
+use Spatie\LaravelPackageTools\Commands\InstallCommand;
 
 class JengaServiceProvider extends PackageServiceProvider
 {
@@ -16,9 +17,24 @@ class JengaServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('laravel-jenga-api')
+            ->name('jenga')
             ->hasConfigFile('jenga')
-            ->hasMigration('create_jenga_table')
-            ->hasCommand(JengaAuthCommand::class);
+            ->hasMigration('create_jenga_tokens_table')
+            ->hasCommands([
+                JengaAuthCommand::class
+            ])
+            ->hasTranslations()
+            ->hasInstallCommand(function (InstallCommand $command) {
+                $command
+                    ->startWith(function (InstallCommand $command) {
+                        $command->info('Hello, and welcome to laravel jenga setup!');
+                    })
+                    ->publishConfigFile()
+                    ->publishMigrations()
+                    ->askToStarRepoOnGitHub('njoguamos/laravel-jenga')
+                    ->endWith(function (InstallCommand $command) {
+                        $command->info('Congratulation! You can run `php artisan migration`. Happy coding!');
+                    });
+            });
     }
 }

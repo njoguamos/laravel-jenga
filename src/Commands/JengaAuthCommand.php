@@ -5,7 +5,7 @@ namespace NjoguAmos\Jenga\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
-use NjoguAmos\Jenga\Models\Jenga;
+use NjoguAmos\Jenga\Models\JengaToken;
 
 class JengaAuthCommand extends Command
 {
@@ -28,12 +28,13 @@ class JengaAuthCommand extends Command
             ]);
 
         if (! $response->successful()) {
-            $this->error('There was an error getting jenga credentials: '.$response->json()['message']);
+            $this->error('There was an error getting jenga credentials.');
+
             return self::FAILURE;
         }
 
         $data = $response->json();
-        Jenga::query()
+        JengaToken::query()
             ->create([
                 'access_token'  => $data['accessToken'],
                 'refresh_token' => $data['refreshToken'],

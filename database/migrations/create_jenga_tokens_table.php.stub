@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('jenga', function (Blueprint $table) {
+        Schema::create('jenga_tokens', function (Blueprint $table) {
             $table->id();
 
             $table->text('access_token')->index();

@@ -1,8 +1,8 @@
 # Welcome
 
-![run-tests](https://github.com/njoguamos/laravel-jenga-api/workflows/run-tests/badge.svg)
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/njoguamos/laravel-jenga-api.svg?style=flat-square)](https://packagist.org/packages/njoguamos/laravel-jenga-api)
-[![Total Downloads](https://img.shields.io/packagist/dt/njoguamos/laravel-jenga-api.svg?style=flat-square)](https://packagist.org/packages/njoguamos/laravel-jenga-api)
+![run-tests](https://github.com/njoguamos/laravel-jenga/workflows/run-tests/badge.svg)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/njoguamos/laravel-jenga.svg?style=flat-square)](https://packagist.org/packages/njoguamos/laravel-jenga)
+[![Total Downloads](https://img.shields.io/packagist/dt/njoguamos/laravel-jenga.svg?style=flat-square)](https://packagist.org/packages/njoguamos/laravel-jenga)
 
 Welcome to Laravel Jenga API Documentation. This package is still work in progress and not all modules are complete.
 
@@ -12,7 +12,7 @@ Welcome to Laravel Jenga API Documentation. This package is still work in progre
 Use the Composer package manager to install this package into your Laravel project
 
 ```bash
-composer require njoguamos/laravel-jenga-api
+composer require njoguamos/laravel-jenga
 ```
 
 ### 1.2 Update your `.env` variables
@@ -30,22 +30,21 @@ JENGA_MERCHANT_CODE=0123456789
 > **Info**
 > If you don't have the credentials, follow the [developer quickstart](https://developer.jengaapi.io/docs/developer-quickstart) from Jenga API documentation.
 
-### 1.3 Prepare Database
+### 1.3 Initialising the Package
 
-You need to publish the migration to create the `jenga` table. This is the table that will store `access_token` from Jenga api.
+Before you can use the package, run the initialisation command:
 
 ```bash
-php artisan vendor:publish --provider="NjoguAmos\Jenga\JengaServiceProvider" --tag="migrations"
+php artisan jenga:install
 ```
+
+This command will allow you to:
+- publish the `jenga.php` config file
+- publish the `create_jenga_tokens` migration
+- run migrations (optional)
 
 > **Info**
 > For security reasons, `access_token` and `refresh_token` will be encrypted using you `application key`. You can learn more about encryption from [Laravel documentation](https://laravel.com/docs/9.x/encryption)
-
-After that, you need to run migrations.
-
-```bash
-php artisan migrate
-```
 
 ### 1.4 Generating `Bearer Token`
 
@@ -55,7 +54,7 @@ Once you have valid credentials, run the following command.
 php artisan jenga:auth
 ```
 
-This command will get an `access_token` token from Jenga API and add them into a new record on `jenga` table. 
+This command will get an `access_token` token from Jenga API and add them into a new record on `jenga` table.
 
 This command may fail:
 - When you are not connected to the internet
@@ -83,7 +82,7 @@ protected function schedule(Schedule $schedule)
 You may optionally export config using the following command,
 
 ```bash
-php artisan vendor:publish --provider="NjoguAmos\Jenga\JengaServiceProvider" --tag="config"
+php artisan vendor:publish --tag=jenga-config
 ```
 
 # 2. Usage

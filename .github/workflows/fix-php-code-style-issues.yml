@@ -17,6 +17,10 @@ jobs:
 
       - name: Fix PHP code style issues
         uses: aglipanci/laravel-pint-action@2.0.0
+        with:
+            preset: 'psr12'
+            verboseMode: true
+            configPath: "pint.json"
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
