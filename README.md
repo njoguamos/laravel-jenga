@@ -82,8 +82,27 @@ protected function schedule(Schedule $schedule)
 
 ### Generate Signature
 
-- [ ] TODO: Work in progress
+You can manually provide a key pair of private and public key by defining them as environment variables
 
+```dotenv
+JENGA_PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----
+<private key here>
+-----END RSA PRIVATE KEY-----"
+
+JENGA_PUBLIC_KEY="-----BEGIN PUBLIC KEY-----
+<public key here>
+-----END PUBLIC KEY-----"
+```
+
+The other alternative is to use the inbuilt command that will generate secure keys set and add them to the environment variables file `.env`.
+
+```bash
+php artisan jenga:keys
+```
+You may use `--force` flag to replace existing keys. You can specify key size using `--length` flag e.g `1024, 2048, 4096`. The default size is `4096`
+
+> **Note**
+> Extensions like `bcmath`, `gmp`, `libsodium` and `openssl` are not required when generating they keys. However, they speed up the process if they are available.
 
 ## 2. Usage
 ### 2.1 Account services
