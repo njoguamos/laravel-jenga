@@ -14,7 +14,7 @@ return [
      | Production: https://api-finserve-prod.azure-api.net
      |
      */
-    'host' => env('JENGA_LIVE_MODE', false) === true
+    'host'        => env('JENGA_LIVE_MODE', false) === true
         ? 'https://api-finserve-prod.azure-api.net'
         : 'https://uat.finserve.africa',
 
@@ -29,7 +29,7 @@ return [
      | the testing API key and production key when application is live.
      |
      */
-    'key' => env('JENGA_API_KEY'),
+    'key'         => env('JENGA_API_KEY'),
 
     /*
      |--------------------------------------------------------------------------
@@ -42,9 +42,9 @@ return [
      |
      */
 
-    'merchant' => env('JENGA_MERCHANT_CODE'),
+    'merchant'    => env('JENGA_MERCHANT_CODE'),
 
-    'secret' => env('JENGA_CONSUMER_SECRET'),
+    'secret'      => env('JENGA_CONSUMER_SECRET'),
 
 
     /*
@@ -59,5 +59,5 @@ return [
      */
     'private_key' => env('JENGA_PRIVATE_KEY'),
 
-    'public_key' => env('JENGA_PUBLIC_KEY'),
+    'public_key'  => env('JENGA_PUBLIC_KEY'),
 ];
