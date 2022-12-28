@@ -31,10 +31,9 @@ class JengaServiceProvider extends PackageServiceProvider
                     })
                     ->publishConfigFile()
                     ->publishMigrations()
-                    ->askToRunMigrations()
                     ->askToStarRepoOnGitHub('njoguamos/laravel-jenga')
                     ->endWith(function (InstallCommand $command) {
-                        $command->info('Happy coding!');
+                        $command->info('Congratulation! You can run `php artisan migration`. Happy coding!');
                     });
             });
     }
