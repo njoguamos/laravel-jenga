@@ -5,7 +5,7 @@ namespace NjoguAmos\Jenga\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Http;
-use NjoguAmos\Jenga\Models\Jenga;
+use NjoguAmos\Jenga\Models\JengaToken;
 
 class JengaAuthCommand extends Command
 {
@@ -33,7 +33,7 @@ class JengaAuthCommand extends Command
         }
 
         $data = $response->json();
-        Jenga::query()
+        JengaToken::query()
             ->create([
                 'access_token'  => $data['accessToken'],
                 'refresh_token' => $data['refreshToken'],

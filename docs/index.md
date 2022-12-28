@@ -35,7 +35,7 @@ JENGA_MERCHANT_CODE=0123456789
 You need to publish the migration to create the `jenga` table. This is the table that will store `access_token` from Jenga api.
 
 ```bash
-php artisan vendor:publish --provider="NjoguAmos\Jenga\JengaServiceProvider" --tag="migrations"
+php artisan vendor:publish --tag=jeng-api-migrations
 ```
 
 > **Info**
@@ -55,7 +55,7 @@ Once you have valid credentials, run the following command.
 php artisan jenga:auth
 ```
 
-This command will get an `access_token` token from Jenga API and add them into a new record on `jenga` table. 
+This command will get an `access_token` token from Jenga API and add them into a new record on `jenga` table.
 
 This command may fail:
 - When you are not connected to the internet

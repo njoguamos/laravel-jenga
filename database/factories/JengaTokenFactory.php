@@ -4,12 +4,12 @@ namespace NjoguAmos\Jenga\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use NjoguAmos\Jenga\Models\Jenga;
+use NjoguAmos\Jenga\Models\JengaToken;
 
 /** @extends Factory<Jenga> */
-class JengaFactory extends Factory
+class JengaTokenFactory extends Factory
 {
-    protected $model = Jenga::class;
+    protected $model = JengaToken::class;
 
     public function definition()
     {

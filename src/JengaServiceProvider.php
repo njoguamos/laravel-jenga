@@ -18,7 +18,7 @@ class JengaServiceProvider extends PackageServiceProvider
         $package
             ->name('laravel-jenga-api')
             ->hasConfigFile('jenga')
-            ->hasMigration('create_jenga_table')
+            ->hasMigration('create_jenga_tokens_table')
             ->hasCommand(JengaAuthCommand::class);
     }
 }
