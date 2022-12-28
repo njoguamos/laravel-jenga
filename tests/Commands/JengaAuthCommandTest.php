@@ -1,8 +1,9 @@
 <?php
 
+use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Carbon;
+use NjoguAmos\Jenga\Models\Jenga;
 
 test('it can get and save authorization tokens to database on success response', function () {
     $response = [
@@ -13,26 +14,27 @@ test('it can get and save authorization tokens to database on success response',
         "tokenType"    => "Bearer"
     ];
 
-    $url = 'https://api-finserve-prod.azure-api.net/authentication/api/v3/authenticate/merchant';
+    $url = config('jenga.host') . "./authentication/api/v3/authenticate/merchant";
 
+    Http::preventStrayRequests();
 
-    Http::fake([$url => Http::response($response, 200)]);
-
-//     Http::assertSent(function (Request $request) {
-//         return $request->hasHeader($url, config('jenga.key')) &&
-//         $request->url() == $url &&
-//         $request['merchantCode'] == config('jenga.key') &&
-//         $request['consumerSecret'] == config('jenga.secret');
-//     });
+    Http::fake([$url => Http::response($response)]);
 
     $this->artisan('jenga:auth')
         ->expectsOutput(trans('jenga::jenga.token.saved'));
 
-    // $this->assertDatabaseHas('jenga', [
-    //     'access_token'  => Crypt::encryptString($response['accessToken']),
-    //     'refresh_token' => Crypt::encryptString($response['refreshToken']),
-    //     'expires_in'    => Carbon::parse($response['expiresIn']),
-    //     'issuedAt'      => Carbon::parse($response['issuedAt']),
-    //     'token_type'    => $response['tokenType'],
-    // ]);
+    Http::assertSent(function (Request $request) use ($url) {
+        return $request->url() == $url &&
+            $request->hasHeader('Api-Key', config('jenga.key')) &&
+            $request['merchantCode'] == config('jenga.merchant') &&
+            $request['consumerSecret'] == config('jenga.secret');
+    });
+
+    $jenga = Jenga::query()->latest()->first();
+
+    expect($jenga->token_type)->toBe($response['tokenType'])
+        ->and($jenga->access_token)->toBe($response['accessToken'])
+        ->and($jenga->refresh_token)->toBe($response['refreshToken'])
+        ->and(Carbon::parse($response['issuedAt'])->equalTo($jenga->issued_at))->toBeTrue()
+        ->and(Carbon::parse($response['expiresIn'])->equalTo($jenga->expires_in))->toBeTrue();
 });

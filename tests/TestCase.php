@@ -17,7 +17,7 @@ class TestCase extends Orchestra
         );
     }
 
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             JengaServiceProvider::class,
@@ -34,6 +34,10 @@ class TestCase extends Orchestra
             'driver'   => 'sqlite',
             'database' => ':memory:',
         ]);
+
+        config()->set('jenga.key', 'i+FQANDLI7siJluilq/zZzlcicZQiFnUxHuSAuQFBykTXpz6HyqB+PGtyWr1nmrw4VTT3V/dB+tqP3UQik5+0w==');
+        config()->set('jenga.merchant', 1234567);
+        config()->set('jenga.secret', '9aU1Z4wRKa9qoLQTwsaX405kRb51C8');
 
         $migration = include __DIR__.'/../database/migrations/create_jenga_table.php.stub';
         $migration->up();

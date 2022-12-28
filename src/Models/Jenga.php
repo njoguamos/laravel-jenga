@@ -18,4 +18,8 @@ class Jenga extends Model
         'expires_in'    => 'datetime',
         'issued_at'     => 'datetime',
     ];
+
+    protected $fillable = [
+        'access_token', 'refresh_token','expires_in','issued_at','token_type'
+    ];
 }
