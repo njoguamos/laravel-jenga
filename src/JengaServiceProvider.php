@@ -3,6 +3,7 @@
 namespace NjoguAmos\Jenga;
 
 use NjoguAmos\Jenga\Commands\JengaAuthCommand;
+use NjoguAmos\Jenga\Commands\JengaKeysCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Spatie\LaravelPackageTools\Commands\InstallCommand;
@@ -21,7 +22,8 @@ class JengaServiceProvider extends PackageServiceProvider
             ->hasConfigFile('jenga')
             ->hasMigration('create_jenga_tokens_table')
             ->hasCommands([
-                JengaAuthCommand::class
+                JengaAuthCommand::class,
+                JengaKeysCommand::class
             ])
             ->hasTranslations()
             ->hasInstallCommand(function (InstallCommand $command) {

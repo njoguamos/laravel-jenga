@@ -14,7 +14,7 @@ return [
      | Production: https://api-finserve-prod.azure-api.net
      |
      */
-    'host'     => env('JENGA_LIVE_MODE', false) === true
+    'host'        => env('JENGA_LIVE_MODE', false) === true
         ? 'https://api-finserve-prod.azure-api.net'
         : 'https://uat.finserve.africa',
 
@@ -28,29 +28,36 @@ return [
      | your Jenga HQ account. When testing your application integration, use
      | the testing API key and production key when application is live.
      |
-     |
      */
-    'key'      => env('JENGA_API_KEY'),
+    'key'         => env('JENGA_API_KEY'),
 
     /*
      |--------------------------------------------------------------------------
-     | Jenga Merchant Code (Username)
+     | Jenga Credentials
      |--------------------------------------------------------------------------
      |
-     | This an numeric code provided by JengaHQ.
-     |
+     | Merchant code refer to a unique numeric code identifying an organisation.
+     | On the other hand, consumer secrete is an alphanumeric code. Both them
+     | are provided by JengaHQ and are referred to as credentials.
      |
      */
-    'merchant' => env('JENGA_MERCHANT_CODE'),
+
+    'merchant'    => env('JENGA_MERCHANT_CODE'),
+
+    'secret'      => env('JENGA_CONSUMER_SECRET'),
+
 
     /*
      |--------------------------------------------------------------------------
-     | Jenga Consumer Secret (Password)
+     | Encryption Keys
      |--------------------------------------------------------------------------
      |
-     | This an alphanumeric code provided by JengaHQ.
-     |
+     | Jenga uses encryption keys to secure transaction and request from your
+     | application to jenga api endpoint. For convenience, these keys are
+     | store in the environment variables as opposed to storage file.
      |
      */
-    'secret'   => env('JENGA_CONSUMER_SECRET'),
+    'private_key' => env('JENGA_PRIVATE_KEY'),
+
+    'public_key'  => env('JENGA_PUBLIC_KEY'),
 ];
