@@ -34,6 +34,6 @@ class JengaServiceProvider extends PackageServiceProvider
                         $command->info('Happy coding!');
                     });
             });
-            ;
+        ;
     }
 }
