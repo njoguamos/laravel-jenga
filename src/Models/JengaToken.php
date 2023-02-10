@@ -2,8 +2,12 @@
 
 namespace NjoguAmos\Jenga\Models;
 
+use Database\Factories\JengaFactory;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Prunable;
+use Illuminate\Support\Carbon;
 
 /**
  * App\Models\Jenga
@@ -12,18 +16,19 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $access_token
  * @property string $refresh_token
  * @property string $token_type
- * @property \Illuminate\Support\Carbon|null $issued_at
- * @property \Illuminate\Support\Carbon|null $expires_in
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Database\Factories\JengaFactory factory(...$parameters)
- * @method static \Illuminate\Database\Eloquent\Builder|Jenga newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Jenga newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Jenga query()
+ * @property Carbon|null $issued_at
+ * @property Carbon|null $expires_in
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static JengaFactory factory(...$parameters)
+ * @method static Builder|Jenga newModelQuery()
+ * @method static Builder|Jenga newQuery()
+ * @method static Builder|Jenga query()
  */
 class JengaToken extends Model
 {
     use HasFactory;
+    use Prunable;
 
     /** @var array<string,string> */
     public $casts = [
@@ -36,4 +41,9 @@ class JengaToken extends Model
     protected $fillable = [
         'access_token', 'refresh_token','expires_in','issued_at','token_type'
     ];
+
+    public function prunable(): Builder
+    {
+        return static::where('expires_in', '<', now());
+    }
 }
