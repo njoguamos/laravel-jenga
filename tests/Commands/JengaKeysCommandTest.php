@@ -1,15 +1,15 @@
 <?php
 
-test('it generate and replace private and public keys if they do not exists', function () {
-    config()->set('jenga.private_key', '');
-    config()->set('jenga.public_key', '');
+test(description: 'it generate and replace private and public keys if they do not exists', closure: function () {
+    config()->set(key: 'jenga.private_key', value: '');
+    config()->set(key: 'jenga.public_key', value: '');
 
-    $this->artisan('jenga:keys')
+    $this->artisan(command: 'jenga:keys')
         ->assertSuccessful()
-        ->expectsOutput(trans('jenga::jenga.keys.generated'));
+        ->expectsOutput(output: trans(key: 'jenga::jenga.keys.generated'));
 });
 
-test('it cannot generate and replace private and public keys if they exists', function () {
+test(description: 'it cannot generate and replace private and public keys if they exists', closure: function () {
     $privateKey = "-----BEGIN RSA PRIVATE KEY-----
 MIIEpAIBAAKCAQEA1BvVbYnuhGGmmIwUdUkFP+WG+tkXyf+o7DopD2MgDh+jwyvA
 jwDbSENHOwRuIzYEPBePk1lcchTDraz6VbWbwnDWJNn6cQkDCozRvuN1JnYa88Yy
@@ -48,10 +48,10 @@ aK9cdHrExWQdF9fzN95QfagMp7f2DSMQVhOsXTdZFXMOrkVtWOTlwUJucBGstKOj
 NwIDAQAB
 -----END PUBLIC KEY-----";
 
-    config()->set('jenga.private_key', $privateKey);
-    config()->set('jenga.public_key', $publicKey);
+    config()->set(key: 'jenga.private_key', value: $privateKey);
+    config()->set(key: 'jenga.public_key', value: $publicKey);
 
-    $this->artisan('jenga:keys')
+    $this->artisan(command: 'jenga:keys')
         ->assertFailed()
-        ->expectsOutput(trans('jenga::jenga.keys.exists'));
+        ->expectsOutput(output: trans(key: 'jenga::jenga.keys.exists'));
 });

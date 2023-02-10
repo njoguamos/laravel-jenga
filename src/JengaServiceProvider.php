@@ -18,24 +18,24 @@ class JengaServiceProvider extends PackageServiceProvider
          * More info: https://github.com/spatie/laravel-package-tools
          */
         $package
-            ->name('jenga')
-            ->hasConfigFile('jenga')
-            ->hasMigration('create_jenga_tokens_table')
+            ->name(name: 'jenga')
+            ->hasConfigFile(configFileName: 'jenga')
+            ->hasMigration(migrationFileName: 'create_jenga_tokens_table')
             ->hasCommands([
                 JengaAuthCommand::class,
                 JengaKeysCommand::class
             ])
             ->hasTranslations()
-            ->hasInstallCommand(function (InstallCommand $command) {
+            ->hasInstallCommand(callable: function (InstallCommand $command) {
                 $command
-                    ->startWith(function (InstallCommand $command) {
-                        $command->info('Welcome! We are going to publish migrations and config files.');
+                    ->startWith(callable: function (InstallCommand $command) {
+                        $command->info(string: 'Welcome! We are going to publish migrations and config files.');
                     })
                     ->publishConfigFile()
                     ->publishMigrations()
-                    ->askToStarRepoOnGitHub('njoguamos/laravel-jenga')
-                    ->endWith(function (InstallCommand $command) {
-                        $command->info('Congratulation! You can migrate your database. Happy coding!');
+                    ->askToStarRepoOnGitHub(vendorSlashRepoName: 'njoguamos/laravel-jenga')
+                    ->endWith(callable: function (InstallCommand $command) {
+                        $command->info(string: 'Congratulation! You can migrate your database. Happy coding!');
                     });
             });
     }
