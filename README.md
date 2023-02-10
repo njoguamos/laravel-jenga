@@ -82,6 +82,7 @@ protected function schedule(Schedule $schedule)
 
 ### Clearing Expired Token
 To periodically deleted expired `Bearer Token`, schedule `model:prune` command in the console kernel.
+
 ```php
 // app/Console/Kernel.php
 protected function schedule(Schedule $schedule)
@@ -92,25 +93,34 @@ protected function schedule(Schedule $schedule)
 ```
 
 ### Generate Signature
-
-You can manually provide a key pair of private and public key by defining them as environment variables
-
-```dotenv
-JENGA_PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----
-<private key here>
------END RSA PRIVATE KEY-----"
-
-JENGA_PUBLIC_KEY="-----BEGIN PUBLIC KEY-----
-<public key here>
------END PUBLIC KEY-----"
-```
-
-The other alternative is to use the inbuilt command that will generate secure keys set and add them to the environment variables file `.env`.
+To generate a key pair of private and public key, run the following command.
 
 ```bash
 php artisan jenga:keys
 ```
+
+This command will create a `jenga.key` and `jenga.pub.key` file in your laravel application storage folder. You can customise the directory using `JENGA_KEYS_PATH` variable. 
+
+```text
+# ./yourapplication/storage/jenga.key
+
+-----BEGIN PRIVATE KEY-----
+<private key here>
+-----END RSA PRIVATE KEY-----
+```
+
+```text
+# ./yourapplication/storage/jenga.pub.key
+
+-----BEGIN PUBLIC KEY-----
+<public key here>
+-----END PUBLIC KEY-----
+```
+
 You may use `--force` flag to replace existing keys. You can specify key size using `--length` flag e.g `1024, 2048, 4096`. The default size is `4096`
+
+>**Warning**
+> The generated keys files **SHOULD NEVER** be kept in source control. Make sure you add them to you gitignore file.
 
 > **Note**
 > Extensions like `bcmath`, `gmp`, `libsodium` and `openssl` are not required when generating they keys. However, they speed up the process if they are available.

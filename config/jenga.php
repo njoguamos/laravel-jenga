@@ -49,15 +49,15 @@ return [
 
     /*
      |--------------------------------------------------------------------------
-     | Encryption Keys
+     | Encryption Keys Folder Path
      |--------------------------------------------------------------------------
      |
      | Jenga uses encryption keys to secure transaction and request from your
      | application to jenga api endpoint. For convenience, these keys are
      | store in the environment variables as opposed to storage file.
      |
+     | Warning: The generated keys are not typically kept in source control.
+     |
      */
-    'private_key' => env(key: 'JENGA_PRIVATE_KEY'),
-
-    'public_key' => env(key: 'JENGA_PUBLIC_KEY'),
+    'keys_path' => env(key: 'JENGA_KEYS_PATH', default: storage_path('')),
 ];
