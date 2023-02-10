@@ -39,9 +39,14 @@ class JengaToken extends Model
     ];
 
     protected $fillable = [
-        'access_token', 'refresh_token','expires_in','issued_at','token_type'
+        'access_token',
+        'refresh_token',
+        'expires_in',
+        'issued_at',
+        'token_type'
     ];
 
+    /** @return Builder<JengaToken> */
     public function prunable(): Builder
     {
         return static::where('expires_in', '<', now());
