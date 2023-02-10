@@ -3,7 +3,6 @@
 namespace NjoguAmos\Jenga\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Env;
 use phpseclib3\Crypt\RSA;
 
 class JengaKeysCommand extends Command
@@ -16,27 +15,21 @@ class JengaKeysCommand extends Command
 
     public function handle(): int
     {
-        [$privateKey, $publicKey] = [
-            config('jenga.public_key'),
-            config('jenga.private_key'),
-        ];
+        $key = RSA::createKey(bits: $this->option(key: 'length') ? (int) $this->option(key: 'length') : 2048);
+
+        file_put_contents(
+            filename: config(key: 'jenga.keys_path').'/jenga.key',
+            data: (string) $key
+        );
+
+        file_put_contents(
+            filename: config(key:'jenga.keys_path').'/jenga.pub.key',
+            data: (string) $key->getPublicKey()
+        );
+
+        $this->info(string: trans(key: 'jenga::jenga.keys.generated'));
 
 
-        if ((! empty($publicKey) || !empty($privateKey)) && ! $this->option('force')) {
-            $this->error(trans('jenga::jenga.keys.exists'));
-
-            return self::FAILURE;
-        } else {
-            $key = RSA::createKey($this->option('length') ? (int) $this->option('length') : 2048);
-
-            Env::getRepository()->set('JENGA_PRIVATE_KEY', (string) $key);
-            Env::getRepository()->set('JENGA_PUBLIC_KEY', (string) $key->getPublicKey());
-
-            $this->info(trans('jenga::jenga.keys.generated'));
-
-//            $this->info((string) $key->getPublicKey());
-
-            return self::SUCCESS;
-        }
+        return self::SUCCESS;
     }
 }
