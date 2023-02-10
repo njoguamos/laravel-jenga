@@ -80,6 +80,17 @@ protected function schedule(Schedule $schedule)
 }
 ```
 
+### Clearing Expired Token
+To periodically deleted expired `Bearer Token`, schedule `model:prune` command in the console kernel.
+```php
+// app/Console/Kernel.php
+protected function schedule(Schedule $schedule)
+{
+    # ...
+    $schedule->command('model:prune')->daily();
+}
+```
+
 ### Generate Signature
 
 You can manually provide a key pair of private and public key by defining them as environment variables
