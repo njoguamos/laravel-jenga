@@ -2,7 +2,7 @@
 
 namespace NjoguAmos\Jenga;
 
-use phpseclib3\Crypt\RSA;
+use Spatie\Crypto\Rsa\PrivateKey;
 
 class JengaSignature
 {
@@ -16,16 +16,11 @@ class JengaSignature
 
     public function getSignature(): string
     {
-        $key = RSA::loadPrivateKey(
-            key: (string) file_get_contents(filename: $this->privateKey)
-        );
-
         $dataString = collect(value: $this->data)
             ->flatten()
             ->join(glue: '');
 
-
-        return $key->sign(message: $dataString);
+        return PrivateKey::fromFile($this->privateKey)->sign($dataString);
     }
 
     public function getBase64Signature(): string

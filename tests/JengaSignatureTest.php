@@ -1,7 +1,7 @@
 <?php
 
 use NjoguAmos\Jenga\JengaSignature;
-use phpseclib3\Crypt\RSA;
+use Spatie\Crypto\Rsa\PublicKey;
 
 beforeEach(closure: function () {
     $this->artisan(command: 'jenga:keys');
@@ -18,12 +18,10 @@ test(description: 'it can generate a valid signature using a private key', closu
 
     $signature = (new JengaSignature(data: $data))->getSignature();
 
-    $publicKey = RSA::loadPublicKey(key: (string) file_get_contents(filename: $this->publicKey));
+    $publicKey = PublicKey::fromFile(pathToPublicKey: $this->publicKey);
 
-    expect(value: $publicKey->verify(
-        message: '0011547896523KE2022-01-01',
-        signature: $signature
-    ))->toBeTrue();
+    expect(value: $publicKey->verify(data: '0011547896523KE2022-01-01', signature: $signature))->toBeTrue()
+        ->and(value: $publicKey->verify(data: 'KE2022-01-010011547896523', signature: $signature))->toBeFalse();
 });
 
 test(description: 'it can generate and convert signature to base_64', closure: function () {

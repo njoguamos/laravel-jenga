@@ -122,7 +122,7 @@ This command will create a `jenga.key` and `jenga.pub.key` file in your laravel 
 -----END PUBLIC KEY-----
 ```
 
-You may use `--force` flag to replace existing keys. You can specify key size using `--length` flag e.g `1024, 2048, 4096`. The default size is `4096`
+You may use `--force` flag to replace existing keys. The default key size is `4096`
 
 >**Warning**
 > The generated keys files **SHOULD NEVER** be kept in source control. Make sure you add them to you gitignore file.
