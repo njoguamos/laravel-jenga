@@ -10,15 +10,15 @@
 [![Latest Stable Version](https://img.shields.io/packagist/v/njoguamos/laravel-jenga.svg)](https://packagist.org/packages/njoguamos/laravel-jenga)
 ![Issues](https://img.shields.io/github/issues/njoguamos/laravel-jenga)
 
-## Why use this package
+## 1. Why use this package
 1. To provide a way of generating jenga api `access_token` after a give period e.g every 30 minutes
 2. To provide a fluent way of generating jenga api key pair of `private key` and `public key`
 3. To automate generation of jenga api `Bearer Token`
 4. Offer a seamless gateway to interacting with Jenga API
 
-## Documentation
+## 2. Documentation
 
-### Installation
+### 2.1 Installation
 
 Use the Composer package manager to install this package into your Laravel project
 
@@ -26,7 +26,7 @@ Use the Composer package manager to install this package into your Laravel proje
 composer require njoguamos/laravel-jenga
 ```
 
-### Update your `.env` variables
+### 2.2 Update your `.env` variables
 
 This package assumes that you have a  JengaHQ account, and that you have `Api Key`, `Merchant Code` and `Consumer Secret` (from Jenga)(https://developer.jengaapi.io/docs/developer-quickstart).
 
@@ -42,7 +42,7 @@ JENGA_MERCHANT_CODE=
 > **Note**
 > For `JENGA_LIVE_MODE` use `false` when testing and `true` when running live transactions
 
-### Initialising the Package
+### 2.3 Initialising the Package
 
 You must run install command that will publish the `jenga.php` config file and `create_jenga_tokens` migration
 
@@ -53,7 +53,7 @@ php artisan jenga:install
 > **Note**
 > For security reasons, `access_token` and `refresh_token` will be encrypted using you `application key`. You can learn more about encryption from [Laravel documentation](https://laravel.com/docs/9.x/encryption)
 
-### Generating `Bearer Token`
+### 2.4 Generating `Bearer Token`
 
 Once you have valid credentials, run the following command.
 
@@ -68,7 +68,7 @@ This command may fail:
 - When `Api Key` or `Consumer Secret` or `Merchant` is/are invalid
 - There is a problem with jenga api endpoint
 
-### Generate `Bearer Token` Frequently
+### 2.5 Generate `Bearer Token` Frequently
 The generated `access_token` expires after a particular period usually after `one hour`. To generate a new `access_token` automatically, schedule the `jenga:auth` command in the console kernel. The schedule time should be less than one hour.
 
 ```php
@@ -80,7 +80,7 @@ protected function schedule(Schedule $schedule)
 }
 ```
 
-### Clearing Expired Token
+### 2.6 Clearing Expired Token
 To periodically deleted expired `Bearer Token`, schedule `model:prune` command in the console kernel.
 
 ```php
@@ -97,7 +97,7 @@ protected function schedule(Schedule $schedule)
 }
 ```
 
-### Generate Signature
+### 2.7 Generate Private and Public Keys
 To generate a key pair of private and public key, run the following command.
 
 ```bash
@@ -130,15 +130,34 @@ You may use `--force` flag to replace existing keys. You can specify key size us
 > **Note**
 > Extensions like `bcmath`, `gmp`, `libsodium` and `openssl` are not required when generating they keys. However, they speed up the process if they are available.
 
-## 2. Usage
-### 2.1 Account services
+## 3. Usage
+### 3.1 Generating signature
+To generate a signature manually, call `base64Signature` method in `JengaSignature` class using the data you want to sign.
+
+>**Info**
+> The data is signed in the order it is passed.
+
+```php
+use NjoguAmos\Jenga\JengaSignature;
+
+$data = [
+    "accountId"   => "0011547896523",
+    "countryCode" => "KE",
+    "date"        => "2022-01-01"
+];
+
+$signature = (new JengaSignature(data: $data))->base64Signature();
+// This will return signature for "0011547896523KE2022-01-01'
+// "NCgbapJwPIt+203eyADfPSvPX6uWPPVwMbFdrW+3XoT7oQC2+IaS6srFIGGdMrwrTH ..." 
+```
+### 3.2 Account services
 - [ ] Account Balance
 - [ ] Account MINI Statement
 - [ ] Account Full Statement
 - [ ] Opening and Closing Account Balance
 - [ ] Account Inquiry - Bank Accounts
 
-### 2.1 Send money
+### 3.1 Send money
 - [ ] Within Equity Bank
 - [ ] To Mobile Wallets
 - [ ] Real Time Gross Settlement (RTGS)
@@ -146,32 +165,32 @@ You may use `--force` flag to replace existing keys. You can specify key size us
 - [ ] Pesalink - To Bank Account
 - [ ] Pesalink - To Mobile Number
 
-### 2.1 Send money - IMT
+### 3.1 Send money - IMT
 - [ ] IMT Within Equity Bank
 - [ ] IMT to Mobile Wallets
 - [ ] IMT Pesalink - To Bank Account
 - [ ] IMT Pesalink - To Bank Mobile
 
-### 2.1 Receive money
+### 3.1 Receive money
 - [ ] Receive Payments - Bill Payments
 - [ ] Receive Payments - Merchant Payments
 - [ ] Bill Validation
 
-### 2.1 Receive money queries
+### 3.1 Receive money queries
 - [ ] Get All EazzyPay Merchants
 - [ ] Query Transaction Details
 - [ ] Get All Billers
 
-### 2.1 Airtime
+### 3.1 Airtime
 - [ ] Purchase Airtime
 
-### 2.1 Forex rates
+### 3.1 Forex rates
 - [ ] Get Forex Rates
 
-### 2.1 Know your customer
+### 3.1 Know your customer
 - [ ] ID Search & Verification
 
-### 2.1 MPGS direct integration
+### 3.1 MPGS direct integration
 - [ ] MPGS Validate Payment
 - [ ] MPGS Authenticate Payment
 - [ ] MPGS Authorize Payment
@@ -179,29 +198,29 @@ You may use `--force` flag to replace existing keys. You can specify key size us
 - [ ] MPGS Refund Payment
 
 
-## Testing
+## 4. Testing
 
 ``` bash
 composer test
 ```
 
-## Changelog
+## 5. Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+Please see [RELEASES](https://github.com/njoguamos/laravel-jenga/releases) for more information what has changed recently.
 
-## Contributing
+## 6. Contributing
 
 Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
-## Security
+## 7. Security
 
 If you discover any security related issues, please email njoguamos@gmail.com instead of using the issue tracker.
 
-## Credits
+## 8. Credits
 
 - [Njogu Amos](https://github.com/njoguamos)
 - [All Contributors](../../contributors)
 
-## License
+## 9. License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
