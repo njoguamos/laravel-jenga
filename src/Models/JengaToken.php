@@ -2,7 +2,6 @@
 
 namespace NjoguAmos\Jenga\Models;
 
-use Database\Factories\JengaFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -29,6 +28,7 @@ class JengaToken extends Model
 {
     use HasFactory;
     use Prunable;
+    use HasFactory;
 
     /** @var array<string,string> */
     public $casts = [
