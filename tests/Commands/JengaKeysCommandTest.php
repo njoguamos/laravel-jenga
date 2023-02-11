@@ -2,32 +2,32 @@
 
 use phpseclib3\Crypt\Common\PrivateKey;
 use phpseclib3\Crypt\Common\PublicKey;
+use phpseclib3\Crypt\RSA\PrivateKey as PrivateKeyLoader;
+use phpseclib3\Crypt\RSA\PublicKey as PublicKeyLoader;
 
 beforeEach(function () {
-    config()->set(key: 'jenga.keys_path', value: './tests/stubs');
+    $this->privateKey = config(key: 'jenga.keys_path').'/jenga.key';
+    $this->publiKey = config(key: 'jenga.keys_path').'/jenga.pub.key';
 
-    $this->privateKeyPath = config(key: 'jenga.keys_path').'/jenga.key';
-    $this->publiKeyPath = config(key: 'jenga.keys_path').'/jenga.pub.key';
-
-    if (file_exists($this->privateKeyPath)) {
-        unlink($this->privateKeyPath);
+    if (file_exists($this->privateKey)) {
+        unlink($this->privateKey);
     }
 
-    if (file_exists($this->publiKeyPath)) {
-        unlink($this->publiKeyPath);
+    if (file_exists($this->publiKey)) {
+        unlink($this->publiKey);
     }
 });
 
 test(description: 'it generates and create private and public keys when they do not exists', closure: function () {
-    expect(file_exists($this->privateKeyPath))->toBeFalse()
-        ->and(file_exists($this->publiKeyPath))->toBeFalse();
+    expect(file_exists($this->privateKey))->toBeFalse()
+        ->and(file_exists($this->publiKey))->toBeFalse();
 
     $this->artisan(command: 'jenga:keys')
         ->assertSuccessful()
         ->expectsOutput(output: trans(key: 'jenga::jenga.keys.generated'));
 
-    expect(file_exists($this->privateKeyPath))->toBeTrue()
-    ->and(file_exists($this->publiKeyPath))->toBeTrue();
+    expect(file_exists($this->privateKey))->toBeTrue()
+    ->and(file_exists($this->publiKey))->toBeTrue();
 });
 
 test(description: 'it generates valid private key', closure: function () {
@@ -35,20 +35,19 @@ test(description: 'it generates valid private key', closure: function () {
         ->assertSuccessful()
         ->expectsOutput(output: trans(key: 'jenga::jenga.keys.generated'));
 
-    $privateKey = \phpseclib3\Crypt\RSA\PrivateKey::load(file_get_contents($this->privateKeyPath));
+    $privateKey = PrivateKeyLoader::load(file_get_contents($this->privateKey));
 
     expect(value: $privateKey instanceof PrivateKey)->toBeTrue()
-        ->and(file_get_contents($this->privateKeyPath))->tobe($privateKey->toString('PKCS8'));
+        ->and(file_get_contents($this->privateKey))->tobe($privateKey->toString('PKCS8'));
 });
-
 
 test(description: 'it generates valid public key', closure: function () {
     $this->artisan(command: 'jenga:keys')
         ->assertSuccessful()
         ->expectsOutput(output: trans(key: 'jenga::jenga.keys.generated'));
 
-    $publicKey = \phpseclib3\Crypt\RSA\PublicKey::load(file_get_contents($this->publiKeyPath));
+    $publicKey = PublicKeyLoader::load(file_get_contents($this->publiKey));
 
     expect(value: $publicKey instanceof PublicKey)->toBeTrue()
-        ->and(file_get_contents($this->publiKeyPath))->tobe($publicKey->toString('PKCS8'));
+        ->and(file_get_contents($this->publiKey))->tobe($publicKey->toString('PKCS8'));
 });
