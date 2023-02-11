@@ -27,7 +27,7 @@ class JengaKeysCommand extends Command
             data: (string) $key->getPublicKey()
         );
 
-        $this->info(string: trans(key: 'jenga::jenga.keys.generated',replace: ['dir' => config(key:'jenga.keys_path')]));
+        $this->info(string: trans(key: 'jenga::jenga.keys.generated', replace: ['dir' => config(key:'jenga.keys_path')]));
 
 
         return self::SUCCESS;
