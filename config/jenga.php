@@ -59,5 +59,6 @@ return [
      | Warning: The generated keys are not typically kept in source control.
      |
      */
+
     'keys_path' => env(key: 'JENGA_KEYS_PATH', default: storage_path('')),
 ];
