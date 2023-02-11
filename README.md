@@ -76,7 +76,7 @@ The generated `access_token` expires after a particular period usually after `on
 protected function schedule(Schedule $schedule)
 {
     # ...
-    $schedule->command('jenga:auth')->everyThirtyMinutes();
+    $schedule->command(command: 'jenga:auth')->everyThirtyMinutes();
 }
 ```
 
@@ -85,10 +85,15 @@ To periodically deleted expired `Bearer Token`, schedule `model:prune` command i
 
 ```php
 // app/Console/Kernel.php
+
+use NjoguAmos\Jenga\Models\JengaToken;
+ 
 protected function schedule(Schedule $schedule)
 {
     # ...
-    $schedule->command('model:prune')->daily();
+     $schedule->command(command: 'model:prune', parameters: [
+        '--model' => [JengaToken::class],
+    ])->everyFiveMinutes();
 }
 ```
 
