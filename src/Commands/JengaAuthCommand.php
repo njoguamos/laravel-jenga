@@ -15,37 +15,37 @@ class JengaAuthCommand extends Command
 
     public function handle(): int
     {
-        $url = config('jenga.host') . "/authentication/api/v3/authenticate/merchant";
-        $apiKey = config('jenga.key');
-        $merchantCode = config('jenga.merchant');
-        $consumerSecret = config('jenga.secret');
+        $url = config(key: 'jenga.host') . "/authentication/api/v3/authenticate/merchant";
+        $apiKey = config(key: 'jenga.key');
+        $merchantCode = config(key: 'jenga.merchant');
+        $consumerSecret = config(key: 'jenga.secret');
 
         $response = Http::acceptJson()
-            ->withHeaders(['Api-Key' => $apiKey])
-            ->retry(3, 100)
-            ->post($url, [
+            ->withHeaders(headers: ['Api-Key' => $apiKey])
+            ->retry(times: 3, sleepMilliseconds: 100)
+            ->post(url: $url, data: [
                 'merchantCode'   => $merchantCode,
                 'consumerSecret' => $consumerSecret
             ]);
 
         if (! $response->successful()) {
             // @TODO: Refactor error
-            $this->error(trans('jenga::jenga.token.error'));
+            $this->error(string: trans(key: 'jenga::jenga.token.error'));
 
             return self::FAILURE;
         }
 
         $data = $response->json();
         JengaToken::query()
-            ->create([
+            ->create(attributes: [
                 'access_token'  => $data['accessToken'],
                 'refresh_token' => $data['refreshToken'],
-                'expires_in'    => Carbon::parse($data['expiresIn']),
-                'issued_at'     => Carbon::parse($data['issuedAt']),
+                'expires_in'    => now()->addMinutes(value: 15),
+                'issued_at'     => now(),
                 'token_type'    => $data['tokenType'],
             ]);
 
-        $this->info(trans('jenga::jenga.token.saved'));
+        $this->info(string: trans(key: 'jenga::jenga.token.saved'));
 
         return self::SUCCESS;
     }
