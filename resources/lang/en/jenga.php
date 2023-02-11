@@ -7,7 +7,7 @@ return [
     ],
 
     'keys' => [
-        'generated' => 'A pair of private and public key has been generated and added to env file.',
+        'generated' => 'A pair of private and public key has been generated and saved in :dir.',
         'exists'    => 'Encryption keys already exist. Use the --force option to overwrite them.'
     ]
 ];
