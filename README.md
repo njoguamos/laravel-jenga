@@ -11,7 +11,7 @@
 ![Issues](https://img.shields.io/github/issues/njoguamos/laravel-jenga)
 
 ## 1. Why use this package
-1. To provide a way of generating jenga api `access_token` after a give period e.g every 30 minutes
+1. To provide a way of generating jenga api `access_token` after a give period e.g every 15 minutes
 2. To provide a fluent way of generating jenga api key pair of `private key` and `public key`
 3. To automate generation of jenga api `Bearer Token`
 4. Offer a seamless gateway to interacting with Jenga API
@@ -69,7 +69,7 @@ This command may fail:
 - There is a problem with jenga api endpoint
 
 ### 2.5 Generate `Bearer Token` Frequently
-The generated `access_token` expires after a particular period usually after `one hour`. To generate a new `access_token` automatically, schedule the `jenga:auth` command in the console kernel. The schedule time should be less than one hour.
+The generated `access_token` expires after a particular period usually after `one hour`. To generate a new `access_token` automatically, schedule the `jenga:auth` command in the console kernel. The schedule time should be less than 15 minutes.
 
 ```php
 // app/Console/Kernel.php
