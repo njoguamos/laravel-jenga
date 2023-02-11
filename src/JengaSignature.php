@@ -22,9 +22,4 @@ class JengaSignature
 
         return PrivateKey::fromFile($this->privateKey)->sign($dataString);
     }
-
-    public function getBase64Signature(): string
-    {
-        return base64_encode(string: $this->getSignature());
-    }
 }
