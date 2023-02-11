@@ -3,7 +3,6 @@
 namespace NjoguAmos\Jenga\Commands;
 
 use Illuminate\Console\Command;
-use phpseclib3\Crypt\RSA;
 use Spatie\Crypto\Rsa\KeyPair;
 
 class JengaKeysCommand extends Command

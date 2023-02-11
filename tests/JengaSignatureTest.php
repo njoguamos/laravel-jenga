@@ -1,7 +1,6 @@
 <?php
 
 use NjoguAmos\Jenga\JengaSignature;
-use phpseclib3\Crypt\RSA;
 use Spatie\Crypto\Rsa\PublicKey;
 
 beforeEach(closure: function () {
