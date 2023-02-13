@@ -186,7 +186,7 @@ $signature = (new JengaSignature(data: $data))->base64Signature();
 
 ### 3.8 Forex rates
 
-<details open>
+<details>
 
 <summary>Get the Equity Bank daily currency conversion rate for major currencies.</summary>
 
@@ -219,6 +219,21 @@ Example success response
 ```
 
 Refer to [Forex API Reference](https://developer.jengaapi.io/reference/get-forex-rates)
+
+Supported currencies
+
+| Code | Name                   |
+|------|------------------------|
+| KES  | Kenyan Shilling        | 
+| YNG  | Korean Yang            | 
+| SSP  | South Sudanese Pound   |
+| RWF  | Rwandan Franc          |
+| JPY  | Japanese Yen           |
+| USD  | US Dollar              |
+| GBP  | British Pound Sterling |
+| EURO | European Union (EU)    |
+| ZAR  | South African Rand     |
+| RUP  | Russian Ruble          |
 
 </details>
 
