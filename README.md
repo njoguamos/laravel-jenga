@@ -146,7 +146,7 @@ $data = [
     "date"        => "2022-01-01"
 ];
 
-$signature = (new JengaSignature(data: $data))->base64Signature();
+$signature = (new JengaSignature(data: $data))->getSignature();
 // This will return signature for "0011547896523KE2022-01-01'
 // "NCgbapJwPIt+203eyADfPSvPX6uWPPVwMbFdrW+3XoT7oQC2+IaS6srFIGGdMrwrTH ..." 
 ```
