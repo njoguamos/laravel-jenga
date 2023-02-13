@@ -11,11 +11,11 @@ return [
      | accidental data loss, testing base url us set as the default endpoint.
      |
      | Testing:  https://uat.finserve.africa
-     | Production: https://api-finserve-prod.azure-api.net
+     | Production: https://api.finserve.africa
      |
      */
     'host' => env(key: 'JENGA_LIVE_MODE', default: false) === true
-        ? 'https://api-finserve-prod.azure-api.net'
+        ? 'https://api.finserve.africa'
         : 'https://uat.finserve.africa',
 
     /*
