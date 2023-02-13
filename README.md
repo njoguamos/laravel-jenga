@@ -157,7 +157,7 @@ $signature = (new JengaSignature(data: $data))->base64Signature();
 - [ ] Opening and Closing Account Balance
 - [ ] Account Inquiry - Bank Accounts
 
-### 3.1 Send money
+### 3.3 Send money
 - [ ] Within Equity Bank
 - [ ] To Mobile Wallets
 - [ ] Real Time Gross Settlement (RTGS)
@@ -165,32 +165,67 @@ $signature = (new JengaSignature(data: $data))->base64Signature();
 - [ ] Pesalink - To Bank Account
 - [ ] Pesalink - To Mobile Number
 
-### 3.1 Send money - IMT
+### 3.4 Send money - IMT
 - [ ] IMT Within Equity Bank
 - [ ] IMT to Mobile Wallets
 - [ ] IMT Pesalink - To Bank Account
 - [ ] IMT Pesalink - To Bank Mobile
 
-### 3.1 Receive money
+### 3.5 Receive money
 - [ ] Receive Payments - Bill Payments
 - [ ] Receive Payments - Merchant Payments
 - [ ] Bill Validation
 
-### 3.1 Receive money queries
+### 3.5 Receive money queries
 - [ ] Get All EazzyPay Merchants
 - [ ] Query Transaction Details
 - [ ] Get All Billers
 
-### 3.1 Airtime
+### 3.7 Airtime
 - [ ] Purchase Airtime
 
-### 3.1 Forex rates
-- [ ] Get Forex Rates
+### 3.8 Forex rates
 
-### 3.1 Know your customer
+<details open>
+
+<summary>Get the Equity Bank daily currency conversion rate for major currencies.</summary>
+
+```php
+use NjoguAmos\Jenga\ForexRates;
+
+$rates = (new ForexRates())
+        ->convert(
+            amount: 1042,
+            currencyCode: "USD",
+            toCurrency: "KES",
+            accountNumber: '1450160649886',
+            countryCode: 'KE'
+        );
+```
+
+Example success response
+```json
+{
+    "status": true,
+    "code": 0,
+    "message": "success",
+    "data": {
+      "convertedAmount": 127749.2,
+      "rate": 122.6,
+      "fromAmount": 1042,
+      "rateCode": "TTB"
+    }
+  }
+```
+
+Refer to [Forex API Reference](https://developer.jengaapi.io/reference/get-forex-rates)
+
+</details>
+
+### 3.9 Know your customer
 - [ ] ID Search & Verification
 
-### 3.1 MPGS direct integration
+### 3.10 MPGS direct integration
 - [ ] MPGS Validate Payment
 - [ ] MPGS Authenticate Payment
 - [ ] MPGS Authorize Payment
