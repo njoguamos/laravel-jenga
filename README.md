@@ -53,6 +53,13 @@ php artisan jenga:install
 > **Note**
 > For security reasons, `access_token` and `refresh_token` will be encrypted using you `application key`. You can learn more about encryption from [Laravel documentation](https://laravel.com/docs/9.x/encryption)
 
+
+You can go ahead and migrate the database.
+
+```bash
+php artisan migrate
+```
+
 ### 2.4 Generating `Bearer Token`
 
 Once you have valid credentials, run the following command.
