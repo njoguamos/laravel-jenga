@@ -16,6 +16,9 @@
 3. To automate generation of jenga api `Bearer Token`
 4. Offer a seamless gateway to interacting with Jenga API
 
+>**Info**
+>Ready to get started? I have prepared a [playground which you can clone](https://github.com/njoguamos/laravel-jenga-playground) and get started
+
 ## 2. Documentation
 
 ### 2.1 Installation
