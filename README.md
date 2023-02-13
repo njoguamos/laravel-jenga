@@ -17,7 +17,7 @@
 4. Offer a seamless gateway to interacting with Jenga API
 
 >**Info**
->Ready to get started? I have prepared a [playground which you can clone](https://github.com/njoguamos/laravel-jenga-playground) and get started
+>Ready to get started? I have prepared a [playground which you can clone](https://github.com/njoguamos/laravel-jenga-playground) and get started. It will help you test your crendentials while showinf you how to integrate this package with your laravel application.
 
 ## 2. Documentation
 
