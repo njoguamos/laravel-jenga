@@ -24,7 +24,7 @@ class ForexRates
         int $amount,
         string $currencyCode,
         string $toCurrency,
-        ?string $accountNumber  = null,
+        ?string $accountNumber = null,
         ?string $countryCode = null,
     ): mixed {
         return Http::asJson()
@@ -34,7 +34,7 @@ class ForexRates
                 "currencyCode"  => $currencyCode,
                 "toCurrency"    => $toCurrency,
                 "countryCode"   => $countryCode ?: config(key: 'jenga.country'),
-                'accountNumber' => $accountNumber  ?: config(key: 'jenga.account')
+                'accountNumber' => $accountNumber ?: config(key: 'jenga.account')
             ])->body();
     }
 }
