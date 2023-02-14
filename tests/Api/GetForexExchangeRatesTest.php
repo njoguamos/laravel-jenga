@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
-use NjoguAmos\Jenga\ForexRates;
+use NjoguAmos\Jenga\Api\GetForexExchangeRates;
+use NjoguAmos\Jenga\Dto\ExchangeRatesDto;
 use NjoguAmos\Jenga\Models\JengaToken;
 
 test(description: 'it can get forex rates successfully', closure: function () {
@@ -28,12 +29,13 @@ test(description: 'it can get forex rates successfully', closure: function () {
 
     Http::preventStrayRequests();
 
-    $rates = (new ForexRates())
-        ->convert(
-            amount: 1042,
-            currencyCode: "USD",
-            toCurrency: "KES",
-        );
+    $data = new ExchangeRatesDto(
+        amount: 1042,
+        currencyCode: "USD",
+        toCurrency: "KES",
+    );
+
+    $rates = (new GetForexExchangeRates())->convert($data);
 
     expect($rates)->toBe(json_encode($response));
 

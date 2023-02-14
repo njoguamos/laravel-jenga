@@ -182,8 +182,7 @@ return view(view: 'check-out', data: [
     'orderAmount' => '', // The value of the transaction
     'orderReference' => '', // The merchant order reference. Min8 characters and It has to be alphanumeric
     'productType' => '', // Product category
-    'productDescription' => '' // A brief summary of the product. max 200 characters,
-    'paymentTimeLimit' => config(key: 'jenga.limit'), // Duration payment is valid. 
+    'productDescription' => '' // A brief summary of the product. max 200 characters, 
     'customerFirstName' => '', // The customer's First Name
     'customerLastName' => '', // The customer's Last Name
     'customerEmail' => '', // Customer email
@@ -209,7 +208,6 @@ Configure your frontend form.
     <input type="hidden" id="orderReference" name="orderReference" value="{{ $orderReference }}">
     <input type="hidden" id="productType" name="productType" value="{{ $productType }}">
     <input type="hidden" id="productDescription" name="productDescription" value="{{ $productDescription }}">
-    <input type="hidden" id="paymentTimeLimit" name="paymentTimeLimit" value="{{ $paymentTimeLimit }}">
     <input type="hidden" id="customerFirstName" name="customerFirstName" value="{{ $customerFirstName }}">
     <input type="hidden" id="customerLastName" name="customerLastName" value="{{ $customerLastName }}">
     <input type="hidden" id="customerEmail" name="customerEmail" value="{{ $customerEmail }}">
@@ -265,16 +263,19 @@ Configure your frontend form.
 <summary>Get the Equity Bank daily currency conversion rate for major currencies.</summary>
 
 ```php
-use NjoguAmos\Jenga\ForexRates;
+use NjoguAmos\Jenga\Api\GetForexExchangeRates;
+use NjoguAmos\Jenga\Dto\ExchangeRatesDto;
 
-$rates = (new ForexRates())
-        ->convert(
-            amount: 1042,
-            currencyCode: "USD",
-            toCurrency: "KES",
-            accountNumber: '1450160649886',
-            countryCode: 'KE'
-        );
+// Convert 1042 USD into KES using Equity Bank Kenya rate.
+$data = new ExchangeRatesDto(
+    amount: 1042,
+    currencyCode: "USD",
+    toCurrency: "KES",
+    accountNumber: '1450160649886',
+    countryCode: 'KE'
+);
+
+$rates = (new GetForexExchangeRates())->convert($data);
 ```
 
 Example success response

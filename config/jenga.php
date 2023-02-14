@@ -120,17 +120,4 @@ return [
     */
 
     'wallet' => env(key: 'JENGA_DEFAULT_WALLET'),
-
-    /*
-     |--------------------------------------------------------------------------
-     | Payment Gateway Default Payment Time Limit
-     |--------------------------------------------------------------------------
-     |
-     | Jenga PGW has a time limit when the customer should complement the payment
-     | here, you can set the global time limit for your application. By default
-     | 60 minutes have bee set. Feel free to change to your liking.
-     |
-    */
-
-    'limit' => env(key: 'JENGA_PAYMENT_TIME_LIMIT', default: '60mins'),
 ];
