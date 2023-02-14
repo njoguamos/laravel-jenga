@@ -15,14 +15,16 @@ class ForexExchangeRates extends DefaultJengaConnector implements JengaConnector
 
     public function convert(ExchangeRatesDto $data): string
     {
+        $postData = [
+            "amount"        => $data->amount,
+            "currencyCode"  => $data->currencyCode,
+            "toCurrency"    => $data->toCurrency,
+            "countryCode"   => $data->countryCode ?: config(key: 'jenga.country'),
+            'accountNumber' => $data->accountNumber ?: config(key: 'jenga.account')
+        ];
+
         return Http::asJson()
             ->withToken(token: $this->getToken())
-            ->post(url: $this->getEndPoint(), data: [
-                "amount"        => $data->amount,
-                "currencyCode"  => $data->currencyCode,
-                "toCurrency"    => $data->toCurrency,
-                "countryCode"   => $data->countryCode ?: config(key: 'jenga.country'),
-                'accountNumber' => $data->accountNumber ?: config(key: 'jenga.account')
-            ])->body();
+            ->post(url: $this->getEndPoint(), data: $postData)->body();
     }
 }

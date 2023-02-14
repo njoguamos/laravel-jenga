@@ -20,7 +20,7 @@ class ExchangeRatesDto
         public ?string $accountNumber = null,
 
         /** the country for which rates are being requested. Valid values are KE, TZ, UG, RW.*/
-        public string $countryCode = 'KE',
+        public ?string $countryCode = null,
     ) {
     }
 }
