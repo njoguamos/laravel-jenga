@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c6e5b6d32a81e1b893ae5e5b5aa68c72",
+    "content-hash": "44cf359f66d6ff01b2853ebfbb04ffcb",
     "packages": [
         {
             "name": "brick/math",
@@ -2568,6 +2568,68 @@
                 }
             ],
             "time": "2022-11-05T23:03:38+00:00"
+        },
+        {
+            "name": "sammyjo20/saloon",
+            "version": "v1.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sammyjo20/Saloon.git",
+                "reference": "480c0277bfe0aa6e900a27b89679f5ce59a2eeb5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sammyjo20/Saloon/zipball/480c0277bfe0aa6e900a27b89679f5ce59a2eeb5",
+                "reference": "480c0277bfe0aa6e900a27b89679f5ce59a2eeb5",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.5",
+                "illuminate/support": "^8.0 || ^9.0",
+                "nesbot/carbon": "^2.64",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.5",
+                "league/flysystem": "^3.0",
+                "pestphp/pest": "^1.21",
+                "spatie/ray": "^1.33",
+                "symfony/dom-crawler": "^6.0"
+            },
+            "suggest": {
+                "symfony/dom-crawler": "Required for the SaloonResponse dom() method to parse HTML and XML."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sammyjo20\\Saloon\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sam Carré",
+                    "email": "29132017+Sammyjo20@users.noreply.github.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Build beautiful API integrations and SDKs with Saloon",
+            "homepage": "https://github.com/sammyjo20/saloon",
+            "keywords": [
+                "api",
+                "api-integrations",
+                "saloon",
+                "sammyjo20",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/Sammyjo20/Saloon/issues",
+                "source": "https://github.com/Sammyjo20/Saloon/tree/v1.6.1"
+            },
+            "time": "2023-02-06T18:14:06+00:00"
         },
         {
             "name": "spatie/crypto",
