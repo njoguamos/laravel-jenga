@@ -61,6 +61,8 @@ test(description: 'it can search ID details successfully', closure: function () 
         "documentNumber" => '555555',
     ];
 
+    $this->artisan(command: 'jenga:keys');
+
     $signature = (new JengaSignature(data: $signatureData))->getSignature();
 
     Http::fake([
