@@ -263,7 +263,7 @@ Configure your frontend form.
 <summary>Get the Equity Bank daily currency conversion rate for major currencies.</summary>
 
 ```php
-use NjoguAmos\Jenga\Api\GetForexExchangeRates;
+use NjoguAmos\Jenga\Api\ForexExchangeRates;
 use NjoguAmos\Jenga\Dto\ExchangeRatesDto;
 
 // Convert 1042 USD into KES using Equity Bank Kenya rate.
@@ -275,7 +275,7 @@ $data = new ExchangeRatesDto(
     countryCode: 'KE'
 );
 
-$rates = (new GetForexExchangeRates())->convert($data);
+$rates = (new ForexExchangeRates())->convert($data);
 ```
 
 Example success response

@@ -3,9 +3,10 @@
 namespace NjoguAmos\Jenga\Api;
 
 use Illuminate\Support\Facades\Http;
+use NjoguAmos\Jenga\Concerns\JengaConnector;
 use NjoguAmos\Jenga\Dto\ExchangeRatesDto;
 
-class GetForexExchangeRates extends DefaultJengaConnector
+class ForexExchangeRates extends DefaultJengaConnector implements JengaConnector
 {
     public function getEndPoint(): string
     {
