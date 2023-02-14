@@ -265,16 +265,16 @@ Configure your frontend form.
 <summary>Get the Equity Bank daily currency conversion rate for major currencies.</summary>
 
 ```php
-use NjoguAmos\Jenga\ForexRates;
+use NjoguAmos\Jenga\Api\GetForexExchangeRates;
 
-$rates = (new ForexRates())
-        ->convert(
+$rates = (new GetForexExchangeRates(
             amount: 1042,
             currencyCode: "USD",
             toCurrency: "KES",
             accountNumber: '1450160649886',
             countryCode: 'KE'
-        );
+        ))->send()
+        ->body();
 ```
 
 Example success response
