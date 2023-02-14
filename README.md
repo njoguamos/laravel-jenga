@@ -182,8 +182,7 @@ return view(view: 'check-out', data: [
     'orderAmount' => '', // The value of the transaction
     'orderReference' => '', // The merchant order reference. Min8 characters and It has to be alphanumeric
     'productType' => '', // Product category
-    'productDescription' => '' // A brief summary of the product. max 200 characters,
-    'paymentTimeLimit' => config(key: 'jenga.limit'), // Duration payment is valid. 
+    'productDescription' => '' // A brief summary of the product. max 200 characters, 
     'customerFirstName' => '', // The customer's First Name
     'customerLastName' => '', // The customer's Last Name
     'customerEmail' => '', // Customer email
@@ -209,7 +208,6 @@ Configure your frontend form.
     <input type="hidden" id="orderReference" name="orderReference" value="{{ $orderReference }}">
     <input type="hidden" id="productType" name="productType" value="{{ $productType }}">
     <input type="hidden" id="productDescription" name="productDescription" value="{{ $productDescription }}">
-    <input type="hidden" id="paymentTimeLimit" name="paymentTimeLimit" value="{{ $paymentTimeLimit }}">
     <input type="hidden" id="customerFirstName" name="customerFirstName" value="{{ $customerFirstName }}">
     <input type="hidden" id="customerLastName" name="customerLastName" value="{{ $customerLastName }}">
     <input type="hidden" id="customerEmail" name="customerEmail" value="{{ $customerEmail }}">
