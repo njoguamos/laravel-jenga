@@ -9,6 +9,7 @@
 [![License](https://img.shields.io/github/license/njoguamos/laravel-jenga.svg)](https://github.com/njoguamos/laravel-jenga)
 [![Latest Stable Version](https://img.shields.io/packagist/v/njoguamos/laravel-jenga.svg)](https://packagist.org/packages/njoguamos/laravel-jenga)
 ![Issues](https://img.shields.io/github/issues/njoguamos/laravel-jenga)
+[![Total Downloads](https://img.shields.io/packagist/dt/njoguamos/laravel-jenga.svg?style=flat-square)](https://packagist.org/packages/njoguamos/laravel-jenga)
 
 ## 1. Why use this package
 1. To provide a way of generating jenga api `access_token` after a give period e.g every 15 minutes
