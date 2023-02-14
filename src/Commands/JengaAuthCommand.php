@@ -2,7 +2,6 @@
 
 namespace NjoguAmos\Jenga\Commands;
 
-use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use NjoguAmos\Jenga\Models\JengaToken;
