@@ -186,6 +186,9 @@ return view(view: 'check-out', data: [
     'paymentTimeLimit' => config(key: 'jenga.limit'), // Duration payment is valid. 
     'customerFirstName' => '', // The customer's First Name
     'customerLastName' => '', // The customer's Last Name
+    'customerEmail' => '', // Customer email
+    'customerPhone' => '', // Customer phone number e.g 700325008
+    'countryCode' => config(key: 'jenga.country'), // Country code
     'customerPostalCodeZip' => '', // Customer’s postal code
     'customerAddress' => '', // Customer’s address
     'callbackUrl' => '' // Merchant callback url
@@ -209,6 +212,9 @@ Configure your frontend form.
     <input type="hidden" id="paymentTimeLimit" name="paymentTimeLimit" value="{{ $paymentTimeLimit }}">
     <input type="hidden" id="customerFirstName" name="customerFirstName" value="{{ $customerFirstName }}">
     <input type="hidden" id="customerLastName" name="customerLastName" value="{{ $customerLastName }}">
+    <input type="hidden" id="customerEmail" name="customerEmail" value="{{ $customerEmail }}">
+    <input type="hidden" id="customerPhone" name="customerPhone" value="{{ $customerPhone }}">
+    <input type="hidden" id="countryCode" name="countryCode" value="{{ $countryCode }}">
     <input type="hidden" id="customerPostalCodeZip" name="customerPostalCodeZip" value="{{ $customerPostalCodeZip }}">
     <input type="hidden" id="customerAddress" name="customerAddress" value="{{ $customerAddress }}">
     <input type="hidden" id="callbackUrl" name="callbackUrl" value="{{ $callbackUrl }}">
