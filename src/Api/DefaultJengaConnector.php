@@ -42,10 +42,8 @@ abstract class DefaultJengaConnector
 
     public function getSignatureHeader(array $data): array
     {
-        $signature = (new JengaSignature(data: $data))->getSignature();
-
         return [
-            'signature' => "Bearer $signature"
+            'signature' => (new JengaSignature(data: $data))->getSignature()
         ];
     }
 }

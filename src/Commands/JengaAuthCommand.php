@@ -2,7 +2,6 @@
 
 namespace NjoguAmos\Jenga\Commands;
 
-use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use NjoguAmos\Jenga\Models\JengaToken;
@@ -40,8 +39,8 @@ class JengaAuthCommand extends Command
             ->create(attributes: [
                 'access_token'  => $data['accessToken'],
                 'refresh_token' => $data['refreshToken'],
-                'expires_in'    => Carbon::parse($data['expiresIn']),
-                'issued_at'     => Carbon::parse($data['issuedAt']),
+                'expires_in'    => now()->addMinutes(15),
+                'issued_at'     => now(),
                 'token_type'    => $data['tokenType'],
             ]);
 

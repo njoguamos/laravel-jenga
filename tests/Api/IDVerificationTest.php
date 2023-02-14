@@ -88,7 +88,7 @@ test(description: 'it can search ID details successfully', closure: function () 
     Http::assertSent(function (Request $request) use ($url, $token, $signature) {
         return
             $request->hasHeader('Authorization', "Bearer $token->access_token")
-                 && $request->hasHeader('signature', "Bearer $signature")
+                 && $request->hasHeader('signature', $signature)
                 && $request['documentNumber'] == '555555'
                 && $request['firstName'] == 'John'
                 && $request['lastName'] == 'Doe'
