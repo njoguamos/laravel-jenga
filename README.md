@@ -36,10 +36,14 @@ This package assumes that you have a  JengaHQ account, and that you have `Api Ke
 Copy the respective keys and place them in the `.env` as show in the example below.
 
 ```dotenv
+JENGA_MERCHANT_CODE=
 JENGA_LIVE_MODE=false
 JENGA_API_KEY=
 JENGA_CONSUMER_SECRET=
-JENGA_MERCHANT_CODE=
+
+# Optional
+JENGA_DEFAULT_ACC=
+JENGA_DEFAULT_WALLET=
 ```
 
 > **Note**
