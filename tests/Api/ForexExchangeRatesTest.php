@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Http;
-use NjoguAmos\Jenga\Api\GetForexExchangeRates;
+use NjoguAmos\Jenga\Api\ForexExchangeRates;
 use NjoguAmos\Jenga\Dto\ExchangeRatesDto;
 use NjoguAmos\Jenga\Models\JengaToken;
 
@@ -35,7 +35,7 @@ test(description: 'it can get forex rates successfully', closure: function () {
         toCurrency: "KES",
     );
 
-    $rates = (new GetForexExchangeRates())->convert($data);
+    $rates = (new ForexExchangeRates())->convert($data);
 
     expect($rates)->toBe(json_encode($response));
 
