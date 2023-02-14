@@ -76,8 +76,6 @@ test(description: 'it can search ID details successfully', closure: function () 
         firstName: 'John',
         lastName: 'Doe',
         dateOfBirth: '20 June 1985',
-        documentType: 'ID',
-        countryCode: 'KE',
     );
 
 
