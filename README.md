@@ -142,11 +142,12 @@ You may use `--force` flag to replace existing keys. The default key size is `40
 > The generated keys files **SHOULD NEVER** be kept in source control. Make sure you add them to you gitignore file.
 
 > **Note**
-> Extensions like `bcmath`, `gmp`, `libsodium` and `openssl` are not required when generating they keys. However, they speed up the process if they are available.
+> Extensions like `bcmath`, `gmp`, `libsodium` and `openssl` are required when generating they keys.
 
 ## 3. Usage
+
 ### 3.1 Generating signature
-To generate a signature manually, call `base64Signature` method in `JengaSignature` class using the data you want to sign.
+To generate a signature manually, call `getSignature` method in `JengaSignature` class using the data you want to sign.
 
 >**Info**
 > The data is signed in the order it is passed.
@@ -164,14 +165,67 @@ $signature = (new JengaSignature(data: $data))->getSignature();
 // This will return signature for "0011547896523KE2022-01-01'
 // "NCgbapJwPIt+203eyADfPSvPX6uWPPVwMbFdrW+3XoT7oQC2+IaS6srFIGGdMrwrTH ..." 
 ```
-### 3.2 Account services
+
+### 3.2 Payment Gateway Checkout
+
+To use the payment gateway, prepare the data using the backend and pass to the browser form.
+
+```php
+<?php
+use NjoguAmos\Jenga\Models\JengaToken;
+
+return view(view: 'check-out', data: [
+    'token' => JengaToken::query()->latest()->first()?->access_token, // Token generated via auth API
+    'checkOutUrl' => config(key: 'jenga.checkout'), // Check our url. Don't modify
+    'merchantCode' => config(key: 'jenga.merchant'), // The merchant code provided at registration.
+    'wallet' => config(key: 'jenga.wallet'), // The wallet to be used for the transaction
+    'orderAmount' => '', // The value of the transaction
+    'orderReference' => '', // The merchant order reference. Min8 characters and It has to be alphanumeric
+    'productType' => '', // Product category
+    'productDescription' => '' // A brief summary of the product. max 200 characters,
+    'paymentTimeLimit' => config(key: 'jenga.limit'), // Duration payment is valid. 
+    'customerFirstName' => '', // The customer's First Name
+    'customerLastName' => '', // The customer's Last Name
+    'customerPostalCodeZip' => '', // Customer’s postal code
+    'customerAddress' => '', // Customer’s address
+    'callbackUrl' => '' // Merchant callback url
+    'extraData' => '', // This data will be echoed back during callback url
+]);
+
+```
+Configure your frontend form.
+
+```injectablephp
+<form id="submitcheckout" action="{{ $checkOutUrl }}" method="POST">
+    @csrf
+    
+    <input type="hidden" id="token" name="token" value="{{ $token }}">
+    <input type="hidden" id="merchantCode" name="merchantCode" value="{{ $merchantCode }}">
+    <input type="hidden" id="wallet" name="wallet" value="{{ $wallet }}">
+    <input type="hidden" id="orderAmount" name="orderAmount" autofocus value="{{ $orderAmount }}">
+    <input type="hidden" id="orderReference" name="orderReference" value="{{ $orderReference }}">
+    <input type="hidden" id="productType" name="productType" value="{{ $productType }}">
+    <input type="hidden" id="productDescription" name="productDescription" value="{{ $productDescription }}">
+    <input type="hidden" id="paymentTimeLimit" name="paymentTimeLimit" value="{{ $paymentTimeLimit }}">
+    <input type="hidden" id="customerFirstName" name="customerFirstName" value="{{ $customerFirstName }}">
+    <input type="hidden" id="customerLastName" name="customerLastName" value="{{ $customerLastName }}">
+    <input type="hidden" id="customerPostalCodeZip" name="customerPostalCodeZip" value="{{ $customerPostalCodeZip }}">
+    <input type="hidden" id="customerAddress" name="customerAddress" value="{{ $customerAddress }}">
+    <input type="hidden" id="callbackUrl" name="callbackUrl" value="{{ $callbackUrl }}">
+    <input type="hidden" id="extraData" name="extraData" value="{{ $extraData }}">
+
+    <button type="submit">Subscribe</button>
+</form>
+```
+
+### 3.3 Account services
 - [ ] Account Balance
 - [ ] Account MINI Statement
 - [ ] Account Full Statement
 - [ ] Opening and Closing Account Balance
 - [ ] Account Inquiry - Bank Accounts
 
-### 3.3 Send money
+### 3.4 Send money
 - [ ] Within Equity Bank
 - [ ] To Mobile Wallets
 - [ ] Real Time Gross Settlement (RTGS)
@@ -179,26 +233,26 @@ $signature = (new JengaSignature(data: $data))->getSignature();
 - [ ] Pesalink - To Bank Account
 - [ ] Pesalink - To Mobile Number
 
-### 3.4 Send money - IMT
+### 3.5 Send money - IMT
 - [ ] IMT Within Equity Bank
 - [ ] IMT to Mobile Wallets
 - [ ] IMT Pesalink - To Bank Account
 - [ ] IMT Pesalink - To Bank Mobile
 
-### 3.5 Receive money
+### 3.6 Receive money
 - [ ] Receive Payments - Bill Payments
 - [ ] Receive Payments - Merchant Payments
 - [ ] Bill Validation
 
-### 3.5 Receive money queries
+### 3.6 Receive money queries
 - [ ] Get All EazzyPay Merchants
 - [ ] Query Transaction Details
 - [ ] Get All Billers
 
-### 3.7 Airtime
+### 3.8 Airtime
 - [ ] Purchase Airtime
 
-### 3.8 Forex rates
+### 3.9 Forex rates
 
 <details>
 
@@ -251,10 +305,10 @@ Supported currencies
 
 </details>
 
-### 3.9 Know your customer
+### 3.10 Know your customer
 - [ ] ID Search & Verification
 
-### 3.10 MPGS direct integration
+### 3.11 MPGS direct integration
 - [ ] MPGS Validate Payment
 - [ ] MPGS Authenticate Payment
 - [ ] MPGS Authorize Payment
