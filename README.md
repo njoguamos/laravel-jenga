@@ -312,8 +312,82 @@ Supported currencies
 
 </details>
 
-### 3.10 Know your customer
-- [ ] ID Search & Verification
+### 3.10 ID Search & Verification
+
+
+<details>
+
+<summary>Query the various registrar of persons in the various countries in East Africa.</summary>
+
+```php
+use NjoguAmos\Jenga\Api\IDVerification;
+use NjoguAmos\Jenga\Dto\IDVerificationDto;
+
+$data = new IDVerificationDto(
+    documentNumber: '555555',
+    firstName: 'John',
+    lastName: 'Doe',
+    dateOfBirth: '20 June 1985',
+    documentType: 'ID',
+    countryCode: 'KE',
+);
+
+$search = (new IDVerification())->search($data);
+```
+
+Example success response
+```json
+{
+    "status": true,
+    "code": 0,
+    "message": "success",
+    "data": {
+        "identity": {
+            "customer": {
+                "firstName": "JOHN",
+                "lastName": "DOE",
+                "occupation": "",
+                "gender": "M",
+                "nationality": "Kenyan",
+                "deathDate": "",
+                "fullName": "JOHN JOHN DOE DOE",
+                "middlename": "JOHN DOE",
+                "ShortName": "JOHN",
+                "birthCityName": "",
+                "birthDate": "1985-06-20T12:00:00",
+                "faceImage": ""
+            },
+            "documentType": "NATIONAL ID",
+            "documentNumber": "555555",
+            "documentSerialNumber": "55555555555",
+            "documentIssueDate": "2011-12-08T12:00:00",
+            "documentExpirationDate": "",
+            "IssuedBy": "REPUBLIC OF KENYA",
+            "additionalIdentityDetails": [
+                {
+                    "documentType": "",
+                    "documentNumber": "",
+                    "issuedBy": ""
+                }
+            ],
+            "address": {
+                "locationName": "",
+                "districtName": "",
+                "subLocationName": "",
+                "provinceName": "",
+                "villageName": ""
+            }
+        }
+    }
+}
+
+```
+
+Refer to [ID Search & Verification API Reference](https://developer.jengaapi.io/reference/identity-verification)
+
+
+</details>
+
 
 ### 3.11 MPGS direct integration
 - [ ] MPGS Validate Payment

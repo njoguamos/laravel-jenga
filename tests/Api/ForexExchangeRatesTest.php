@@ -40,12 +40,12 @@ test(description: 'it can get forex rates successfully', closure: function () {
     expect($rates)->toBe(json_encode($response));
 
     Http::assertSent(function (Request $request) use ($url, $token) {
-        return $request->hasHeader('Authorization', "Bearer $token->access_token") &&
-            $request->url() == $url &&
-            $request['amount'] == 1042 &&
-            $request['currencyCode'] == "USD" &&
-            $request['toCurrency'] == "KES" &&
-            $request['accountNumber'] == "1450160649886" &&
-            $request['countryCode'] == "KE";
+        return $request->hasHeader('Authorization', "Bearer $token->access_token")
+            && $request->url() == $url
+            && $request['amount'] == 1042
+            && $request['currencyCode'] == "USD"
+            && $request['toCurrency'] == "KES"
+            && $request['accountNumber'] == "1450160649886"
+            && $request['countryCode'] == "KE";
     });
 });

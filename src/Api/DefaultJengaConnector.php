@@ -2,6 +2,7 @@
 
 namespace NjoguAmos\Jenga\Api;
 
+use NjoguAmos\Jenga\JengaSignature;
 use NjoguAmos\Jenga\Models\JengaToken;
 
 abstract class DefaultJengaConnector
@@ -37,5 +38,14 @@ abstract class DefaultJengaConnector
     public function getBaseUrl(): string
     {
         return $this->baseUrl;
+    }
+
+    public function getSignatureHeader(array $data): array
+    {
+        $signature = (new JengaSignature(data: $data))->getSignature();
+
+        return [
+            'signature' => "Bearer $signature"
+        ];
     }
 }
