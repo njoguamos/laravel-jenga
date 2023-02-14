@@ -33,8 +33,6 @@ test(description: 'it can get forex rates successfully', closure: function () {
             amount: 1042,
             currencyCode: "USD",
             toCurrency: "KES",
-            accountNumber: '1450160649886',
-            countryCode: 'KE'
         );
 
     expect($rates)->toBe(json_encode($response));

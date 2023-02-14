@@ -61,4 +61,76 @@ return [
      */
 
     'keys_path' => env(key: 'JENGA_KEYS_PATH', default: storage_path('')),
+
+    /*
+     |--------------------------------------------------------------------------
+     | Default Country Code
+     |--------------------------------------------------------------------------
+     |
+     | When making request such as forex exchange rates, you have to provide
+     | the country code. The code are the abbreviations for the East Africa
+     | countries where Equity Bank is operating.
+     |
+     | Supported: KE, TZ, UG and RW
+     |
+     */
+
+    'country' => env(key: 'JENGA_COUNTRY_CODE', default: 'KE'),
+
+    /*
+     |--------------------------------------------------------------------------
+     | Default Bank Account
+     |--------------------------------------------------------------------------
+     |
+     | The Default bank account to use when making queries such as balance,
+     | mini-statement, full statement,e.t.c. The default bank account
+     | provided is for testing - you should add in your Jenga HQ.
+     |
+     | Learn more: https://support.jengahq.io/hc/en-us/articles/8662846933265-Making-your-First-Jenga-API-call
+     |
+     */
+
+    'account' => env(key: 'JENGA_DEFAULT_ACC', default: 1450160649886),
+
+    /*
+     |--------------------------------------------------------------------------
+     | Payment Gateway Checkout Url
+     |--------------------------------------------------------------------------
+     |
+     | Jenga PGW provides you with a simple and secure way to collect online
+     | payments. A checkout url is where the check out form is submitted
+     | for payment processing. The url differ depending on environment.
+     |
+     */
+
+    'checkout' => env(key: 'JENGA_LIVE_MODE', default: false) === true
+        ? 'https://v3.jengapgw.io/processPayment'
+        : 'https://checkout-ui-v3-uat.azurewebsites.net/processPayment',
+
+
+    /*
+     |--------------------------------------------------------------------------
+     | Payment Gateway Default Wallet
+     |--------------------------------------------------------------------------
+     |
+     | Jenga PGW requires you to provide a wallet to be used for the transaction.
+     | Instead of provided the wallet every time, you can use this config to
+     | set the default wallet to bes used depending on environment.
+     |
+    */
+
+    'wallet' => env(key: 'JENGA_DEFAULT_WALLET'),
+
+    /*
+     |--------------------------------------------------------------------------
+     | Payment Gateway Default Payment Time Limit
+     |--------------------------------------------------------------------------
+     |
+     | Jenga PGW has a time limit when the customer should complement the payment
+     | here, you can set the global time limit for your application. By default
+     | 60 minutes have bee set. Feel free to change to your liking.
+     |
+    */
+
+    'limit' => env(key: 'JENGA_PAYMENT_TIME_LIMIT', default: '60mins'),
 ];

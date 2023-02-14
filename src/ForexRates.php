@@ -24,17 +24,17 @@ class ForexRates
         int $amount,
         string $currencyCode,
         string $toCurrency,
-        string $accountNumber,
-        string $countryCode,
+        ?string $accountNumber = null,
+        ?string $countryCode = null,
     ): mixed {
         return Http::asJson()
             ->withToken(token: $this->token)
             ->post(url: $this->endPoint, data: [
-                "countryCode"   => $countryCode,
+                "amount"        => $amount,
                 "currencyCode"  => $currencyCode,
                 "toCurrency"    => $toCurrency,
-                "amount"        => $amount,
-                'accountNumber' => $accountNumber
+                "countryCode"   => $countryCode ?: config(key: 'jenga.country'),
+                'accountNumber' => $accountNumber ?: config(key: 'jenga.account')
             ])->body();
     }
 }
