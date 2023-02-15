@@ -183,7 +183,7 @@ return view(view: 'check-out', data: [
     'orderAmount' => '', // The value of the transaction
     'orderReference' => '', // The merchant order reference. Min8 characters and It has to be alphanumeric
     'productType' => '', // Product category
-    'productDescription' => '' // A brief summary of the product. max 200 characters, 
+    'productDescription' => '' // A brief summary of the product. Max 200 characters. Alphanumeric only., 
     'customerFirstName' => '', // The customer's First Name
     'customerLastName' => '', // The customer's Last Name
     'customerEmail' => '', // Customer email
@@ -196,6 +196,7 @@ return view(view: 'check-out', data: [
 ]);
 
 ```
+
 Configure your frontend form.
 
 ```injectablephp
@@ -221,6 +222,34 @@ Configure your frontend form.
 
     <button type="submit">Subscribe</button>
 </form>
+```
+
+A successful response should look like like this.
+
+```json
+{
+    "responseStatus": "true",
+    "transactionStatus": "SUCCESS",
+    "orderReference": "226151",
+    "extraData": "pmQgkBuepzSaiNdRh1rghq2ldPzdq0gQ",
+    "transactionReference": "RBF2PJILMC",
+    "transactionDate": "Wed Feb 15 2023",
+    "transactionAmount": "1",
+    "transactionCurrency": "KES",
+    "message": "Transaction completed successfully",
+    "paymentChannel": "MOBILE",
+    "orderItems": "undefined",
+    "secureResponse": "320396408033f540f6c9bcc426d6e3d1206d584984d72da4017cace6337e4e10d1729ed98ee326d5d0c403c298c789a9YhubIYK7B+WE0Bij2XWxn3iOL+MAyfWU3RruohGTfdB9t5j9lmNTqcmIeY8RL5M\/xenV+hIKvdweVIyzqX333PFgFGd4wV3+LwQpx9LGCxDsj0NFC+ouRdFZ0VADWbnCbZbHlBSO8kxIP8urAXuP1JM21DhTPqzbs8TB763IYmqVHCicmalkDdegDwo+BDQ0HJaf0ia3FektL2v\/Hj3nM9RkmNyA59VH0p5gUhRUhioMxNdFjai9TKZ3CwOZ6O75h5sc7L+Z8w3ucpvYOtuaTV5fxKIfSPkfi3mIvuGQEw7QDJeu3333BRDHt3XobtxZv9GW9\/eey1dRnNW9zplMBxQupJAn98fSKSC0VkSByqt5KKibQFAZxCOYjcvIJ0kea8MkBRwA\/z1YRdeQ+TmQmdLFoe3V3jWyE5SsN6EPU4k="
+}
+```
+
+A customer should also receive an sms like this.
+
+```text
+Your transaction of Kshs.  1.00  has successfully been 
+credited to Finserve Africa Limited-E Commerce Collection 
+Account with Ref. Number  INVDRT and MPESA Tran Ref 
+RBF2PJILMC. Thank you
 ```
 
 ### 3.3 Account services
