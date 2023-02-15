@@ -75,7 +75,7 @@ return [
      |
      */
 
-    'country' => env(key: 'JENGA_COUNTRY_CODE', default: 'KE'),
+    'country' => env(key: 'JENGA_DEFAULT_COUNTRY', default: 'KE'),
 
     /*
      |--------------------------------------------------------------------------
