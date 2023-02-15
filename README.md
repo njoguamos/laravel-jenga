@@ -177,7 +177,7 @@ $signature = (new JengaSignature(data: $data))->getSignature();
 
 <details>
 
-<summary>To use the payment gateway, prepare the data using the backend and pass to the browser form..</summary>
+<summary>To use the payment gateway, prepare the data using the backend and pass to the browser form.</summary>
 
 ```php
 <?php
@@ -267,7 +267,50 @@ RBF2PJILMC. Thank you
 - [ ] Account MINI Statement
 - [ ] Account Full Statement
 - [ ] Opening and Closing Account Balance
-- [ ] Account Inquiry - Bank Accounts
+
+<details>
+
+<summary> 3.3.5 Account Inquiry - Bank Accounts</summary>
+
+To get account details, call the `AccountInquiry` and pass the account number and country code. If no parameters passed, the default account and country configured in [config](./config/jenga.php) will be used
+
+```php
+use NjoguAmos\Jenga\Api\AccountInquiry;
+
+$search = (new AccountInquiry())
+    ->search(
+        countryCode: $data['countryCode'],
+        accountNumber: $data['accountNumber']
+    );
+```
+
+The response should look like this
+
+```json
+{
+    "status": true,
+    "code": 0,
+    "message": "success",
+    "data": {
+        "account": {
+            "branchCode": "145",
+            "number": "1450160649886",
+            "currency": "KES",
+            "status": "Active"
+        },
+        "customer": [
+            {
+                "name": "CATHERINE MURANDITSI MUKABWA",
+                "id": "54307789658",
+                "type": "Retail"
+            }
+        ]
+    }
+}
+```
+
+</details>
+
 
 ### 3.4 Send money
 - [ ] Within Equity Bank
