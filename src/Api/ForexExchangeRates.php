@@ -10,7 +10,7 @@ class ForexExchangeRates extends DefaultJengaConnector implements JengaConnector
 {
     public function getEndPoint(): string
     {
-        return $this->getBaseUrl().'/v3-apis//transaction-api/v3.0/foreignExchangeRates';
+        return $this->getBaseUrl().'/v3-apis/transaction-api/v3.0/foreignExchangeRates';
     }
 
     public function convert(ExchangeRatesDto $data): string

@@ -10,7 +10,7 @@ use NjoguAmos\Jenga\Models\JengaToken;
 test(description: 'it can search ID details successfully', closure: function () {
     $token = JengaToken::factory()->create();
 
-    $url = config(key: 'jenga.host') . '/v3-apis//v3.0/validate/identity';
+    $url = config(key: 'jenga.host') . '/v3-apis/v3.0/validate/identity';
 
     $response = [
         "status"  => true,

@@ -11,7 +11,7 @@ class IDVerification extends DefaultJengaConnector implements JengaConnector
 {
     public function getEndPoint(): string
     {
-        return $this->getBaseUrl() . '/v3-apis//v3.0/validate/identity';
+        return $this->getBaseUrl() . '/v3-apis/v3.0/validate/identity';
     }
 
     public function search(IDVerificationDto $data): string

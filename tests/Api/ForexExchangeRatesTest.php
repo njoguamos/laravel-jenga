@@ -9,7 +9,7 @@ use NjoguAmos\Jenga\Models\JengaToken;
 test(description: 'it can get forex rates successfully', closure: function () {
     $token = JengaToken::factory()->create();
 
-    $url = config(key: 'jenga.host') . '/v3-apis//transaction-api/v3.0/foreignExchangeRates';
+    $url = config(key: 'jenga.host') . '/v3-apis/transaction-api/v3.0/foreignExchangeRates';
 
     $response = [
         "status"  => true,
