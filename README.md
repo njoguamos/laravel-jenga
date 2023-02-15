@@ -148,7 +148,11 @@ You may use `--force` flag to replace existing keys. The default key size is `40
 ## 3. Usage
 
 ### 3.1 Generating signature
-To generate a signature manually, call `getSignature` method in `JengaSignature` class using the data you want to sign.
+
+<details>
+
+<summary>To generate a signature manually, call `getSignature` method in `JengaSignature` class using the data you want to sign.</summary>
+
 
 >**Info**
 > The data is signed in the order it is passed.
@@ -167,9 +171,13 @@ $signature = (new JengaSignature(data: $data))->getSignature();
 // "NCgbapJwPIt+203eyADfPSvPX6uWPPVwMbFdrW+3XoT7oQC2+IaS6srFIGGdMrwrTH ..." 
 ```
 
+</details>
+
 ### 3.2 Payment Gateway Checkout
 
-To use the payment gateway, prepare the data using the backend and pass to the browser form.
+<details>
+
+<summary>To use the payment gateway, prepare the data using the backend and pass to the browser form..</summary>
 
 ```php
 <?php
@@ -251,6 +259,8 @@ credited to Finserve Africa Limited-E Commerce Collection
 Account with Ref. Number  INVDRT and MPESA Tran Ref 
 RBF2PJILMC. Thank you
 ```
+
+</details>
 
 ### 3.3 Account services
 - [ ] Account Balance

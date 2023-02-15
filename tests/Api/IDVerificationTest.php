@@ -86,12 +86,12 @@ test(description: 'it can search ID details successfully', closure: function () 
     Http::assertSent(function (Request $request) use ($url, $token, $signature) {
         return
             $request->hasHeader('Authorization', "Bearer $token->access_token")
-                 && $request->hasHeader('signature', $signature)
-                && $request['documentNumber'] == '555555'
-                && $request['firstName'] == 'John'
-                && $request['lastName'] == 'Doe'
-                && $request['dateOfBirth'] == '1985-06-20'
-                && $request['documentType'] == 'ID'
-                && $request['countryCode'] == 'KE';
+                 && $request->hasHeader('Signature', $signature)
+                && $request['identity']['documentNumber'] == '555555'
+                && $request['identity']['firstName'] == 'John'
+                && $request['identity']['lastName'] == 'Doe'
+                && $request['identity']['dateOfBirth'] == '1985-06-20'
+                && $request['identity']['documentType'] == 'ID'
+                && $request['identity']['countryCode'] == 'KE';
     });
 });

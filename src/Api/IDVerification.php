@@ -22,12 +22,14 @@ class IDVerification extends DefaultJengaConnector implements JengaConnector
         ];
 
         $postData = [
-            "documentNumber" => $data->documentNumber,
-            "firstName"      => $data->firstName,
-            "lastName"       => $data->lastName,
-            "dateOfBirth"    => Carbon::parse($data->dateOfBirth)->format(format: 'Y-m-d'),
-            "documentType"   => $data->documentType ?: 'ID',
-            "countryCode"    => $data->countryCode ?: config(key: 'jenga.country')
+            'identity' => [
+                "documentNumber" => $data->documentNumber,
+                "firstName"      => $data->firstName,
+                "lastName"       => $data->lastName,
+                "dateOfBirth"    => Carbon::parse($data->dateOfBirth)->format(format: 'Y-m-d'),
+                "documentType"   => $data->documentType ?: 'ID',
+                "countryCode"    => $data->countryCode ?: config(key: 'jenga.country')
+            ]
         ];
 
         return Http::asJson()
