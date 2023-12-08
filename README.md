@@ -146,6 +146,9 @@ You may use `--force` flag to replace existing keys. The default key size is `40
 > **Note**
 > Extensions like `bcmath`, `gmp`, `libsodium` and `openssl` are required when generating they keys.
 
+### 2.8 Ensure that you are subscribed to the API services
+If you attempt to access the API and you get `Not Authorized to access the API`, confirm that your account has subscribed to the respective service you are trying to access. You can do so by going to the JengaAPI Settings -> Subscriptions, then `subscribe` or `unsubscribe`.
+
 ## 3. Usage
 
 ### 3.1 Generating signature
