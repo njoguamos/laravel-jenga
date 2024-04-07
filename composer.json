@@ -2,10 +2,12 @@
     "name": "njoguamos/laravel-jenga",
     "description": "A Laravel package for setting up and interacting with Jenga V3 API.",
     "keywords": [
-        "NjoguAmos",
-        "laravel",
-        "jenga-api",
-        "equity bank"
+        "Njogu Amos",
+        "Laravel",
+        "Jenga API",
+        "Equity Bank",
+        "Jenga V3 API",
+        "Payment Gateway"
     ],
     "homepage": "https://github.com/njoguamos/laravel-jenga",
     "license": "MIT",
@@ -28,11 +30,11 @@
         "nunomaduro/collision": "^6.0 | ^v7.10 | ^v8.1",
         "larastan/larastan": "^2.9",
         "orchestra/testbench": "^7.0 | ^8.0 | ^9.0",
-        "pestphp/pest": "^2.0",
+        "pestphp/pest": "^1.21 | ^2.0",
         "phpstan/extension-installer": "^1.1",
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpstan/phpstan-phpunit": "^1.0",
-        "spatie/pest-plugin-test-time": "^2.1"
+        "spatie/pest-plugin-test-time": "^1.1 | ^2.1"
     },
     "autoload": {
         "psr-4": {
