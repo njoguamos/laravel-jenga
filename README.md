@@ -1,10 +1,6 @@
-> **Warning**
-> This package is still in development and is not production ready. Use for testing and development.
-
-
 ![Cover](art/cover.png)
 
-# Jenga API wrapper for Laravel
+# Jenga API wrapper for Laravel 9+
 [![run-tests](https://github.com/njoguamos/laravel-jenga/actions/workflows/run-test.yml/badge.svg)](https://github.com/njoguamos/laravel-jenga/actions/workflows/run-test.yml)
 [![License](https://img.shields.io/github/license/njoguamos/laravel-jenga.svg)](https://github.com/njoguamos/laravel-jenga)
 [![Latest Stable Version](https://img.shields.io/packagist/v/njoguamos/laravel-jenga.svg)](https://packagist.org/packages/njoguamos/laravel-jenga)
