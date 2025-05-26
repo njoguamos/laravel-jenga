@@ -20,6 +20,11 @@
 
 ### 2.1 Installation
 
+| Version | Supported Laravel |
+|---------|-------------------|
+| 1.x     | 9.x, 10.x, 11.x   |
+| 2.x     | 11.x, 12.x        |
+
 Use the Composer package manager to install this package into your Laravel project
 
 ```bash
